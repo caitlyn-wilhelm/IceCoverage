@@ -1,5 +1,8 @@
 *.pdf
-EvolveExample/SeasonalClimateFiles/
+*/SeasonalClimateFiles/
 EvolveExample/tilted.earth.Climate
 EvolveExample/tilted.earth.forward
 EvolveExample/tilted.log
+*.log
+*.Climate
+*.forward
