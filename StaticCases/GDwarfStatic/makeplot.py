@@ -80,7 +80,7 @@ Capsmatrix = CreateMatrix(earth_Obliq_uniq, earth_intstel_uniq, PolarCaps)
 plt.figure(figsize=(9,6.5))
 plt.ylabel("Instellation [Earth]", fontsize=16)
 plt.xlabel("Obliquity [$^\circ$]", fontsize=16)
-plt.ylim(0.891,1.211)
+#plt.ylim(0.891,1.211)
 plt.xlim(0,90)
 
 #plots data
