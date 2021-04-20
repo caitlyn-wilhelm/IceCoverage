@@ -21,8 +21,7 @@ def subcatagorybar(X,vals,axis, color,width = 0.8):
 
 labels = ["Moist Greenhouse","Ice Free", "Singular Caps", "Polar Caps", "Ice Belts", "Snowball"]
 
-legend = ["Static Albedo","Albedo $\pm$ 0.05",
-          "Albedo with Gaussian Periods","Albedo with Uniform Periods"]
+legend = ["Case A","Case B","Case C","Case D"]
 
 colors = [vpl.colors.red,vpl.colors.orange,vpl.colors.pale_blue,vpl.colors.dark_blue]
 
@@ -52,24 +51,22 @@ All = [K_Cases,G_Cases,F_Cases]
 x = np.arange(len(labels))
 width = 0.2
 fig, axs = plt.subplots(3,1,figsize=(9,8))
-fig.subplots_adjust(top=0.85,hspace = 0.55)
+fig.subplots_adjust(top=0.8,hspace = 0.5)
 
 for i in range(len(All)):
     axs[0].set_title("K Star", fontsize = 16)
     axs[1].set_title("G Star", fontsize = 16)
     axs[2].set_title("F Star", fontsize = 16)
     subcatagorybar(labels,All[i],i,colors)
-    axs[i].set_ylabel("Number of Cases", fontsize = 14)
+    axs[i].set_ylabel("Number of Cases", fontsize = 13)
     axs[i].set_xticklabels(labels, fontsize = 12)
     axs[i].set_yscale('log')
-    axs[i].set_xlabel("Classification", fontsize = 14)
+    axs[i].set_xlabel("Classification", fontsize = 13)
+    axs[i].set_yticks([10**2,10**3,10**4])
 
 handles = [mpatches.Patch(color = colors[count], label = value) for count, value in enumerate(legend)]
 plt.legend(handles = handles, fontsize = 14, bbox_to_anchor=(0.,4.35,1.,.105),loc = 'lower left',
            ncol=2, mode="expand", borderaxespad=0)
-
-plt.show()
-plt.close()
 
 if (sys.argv[1] == 'pdf'):
     plt.savefig('AlbedoComparison' + '.pdf')
