@@ -1,0 +1,13 @@
+srcfolder  .
+destfolder G_Ecc01
+trialname  test
+
+file   sun.in
+dLuminosity 3.846e26
+
+file   earth.in
+dObliquity [0, 90, n100] obl
+dSemi [0.83,1.07,n100] semi
+dEcc 0.1
+
+file   vpl.in

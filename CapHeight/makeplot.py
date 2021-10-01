@@ -9,10 +9,11 @@ import sys
 import scipy.ndimage
 from matplotlib.pyplot import figure
 import matplotlib.lines as mlines
+import vplanet
 
-dest = ['/media/caitlyn/Data_Drive2/Projects/IceBelt/K_Cases/K_Monte_Carlo_large/',
-        '/media/caitlyn/Data_Drive2/Projects/IceBelt/G_Cases/G_Monte_Carlo_Large_2/',
-        '/media/caitlyn/Data_Drive2/Projects/IceBelt/F_Cases/F_Monte_Carlo_large/']
+dest = ['/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_Monte_Carlo_large/',
+        '/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_Monte_Carlo_Large_2/',
+        '/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_Monte_Carlo_large/']
 
 star = ['K Star','G Star','F Star']
 num = 10000
@@ -50,20 +51,63 @@ for x in range(len(dest)):
             iceFree = float(line[9])
 
             if (
-                northCapL == 1 and southCapL == 1 and icebeltS == 0 and
-                icebeltL == 0 and snowballL == 0 and snowballS == 0 or
-                northCapS == 1 and northCapL == 1 and southCapS == 1 and
-                southCapL == 1 and icebeltS == 0 and icebeltL == 0 and
+                #North Land, South Land
+                northCapL == 1 and northCapS == 0 and
+                southCapL == 1 and southCapS == 0 and
+                icebeltL == 0  and icebeltS == 0  and
                 snowballL == 0 and snowballS == 0 or
-                northCapS == 1 and southCapS == 1 and icebeltS == 0 and
-                icebeltL == 0 and snowballL == 0 and snowballS == 0 or
-                northCapL == 1 and southCapS == 1 and icebeltS == 0 and
-                icebeltL == 0 and snowballL == 0 and snowballS == 0 or
-                northCapS == 1 and southCapL == 1 and icebeltS == 0 and
-                icebeltL == 0 and snowballL == 0 and snowballS == 0
+
+                #North Sea, South Land
+                northCapL == 0 and northCapS == 1 and
+                southCapL == 1 and southCapS == 0 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Both, South Land
+                northCapL == 1 and northCapS == 1 and
+                southCapL == 1 and southCapS == 0 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Land, South Sea
+                northCapL == 1 and northCapS == 0 and
+                southCapL == 0 and southCapS == 1 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Sea, South Sea
+                northCapL == 0 and northCapS == 1 and
+                southCapL == 0 and southCapS == 1 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Both, South Sea
+                northCapL == 1 and northCapS == 1 and
+                southCapL == 0 and southCapS == 1 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Land, South Both
+                northCapL == 1 and northCapS == 0 and
+                southCapL == 1 and southCapS == 1 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Sea, South Both
+                northCapL == 0 and northCapS == 1 and
+                southCapL == 1 and southCapS == 1 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0 or
+
+                #North Both, South Both
+                northCapL == 1 and northCapS == 1 and
+                southCapL == 1 and southCapS == 1 and
+                icebeltL == 0  and icebeltS == 0  and
+                snowballL == 0 and snowballS == 0
+
             ):
                 if icecount <= 100:
-                    out = vpl.GetOutput(folders[number])
+                    out = vplanet.get_output(folders[number], units = False)
                     body = out.bodies[1]
 
                     lats = np.unique(body.Latitude)
@@ -106,7 +150,9 @@ for x in range(len(dest)):
 
 
 plt.tight_layout()
-os.chdir('/home/caitlyn/IceBelt/CapHeight')
+
+os.chdir('/home/caitlyn/IceSheet/CapHeight')
+
 if (sys.argv[1] == 'pdf'):
     plt.savefig('CapHeight' + '.pdf')
 if (sys.argv[1] == 'png'):

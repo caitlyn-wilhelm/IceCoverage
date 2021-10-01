@@ -1,0 +1,26 @@
+srcfolder  .
+destfolder G_CaseD
+trialname  semi_obl_x
+samplemode random
+randsize 10000
+seed 2
+
+
+file   sun.in
+dLuminosity 3.846e26
+
+file   earth.in
+dSemi [0.83,1.07,u] a
+
+dObliquity [0, 180, c] obl
+dObliqPer [50000, 500000, u] oper
+
+dEcc [0.05, 0.1, g, min0.0,max1.0] e
+dEccPer [50000, 500000, u] eper 
+
+dPrecA [0,360, u] prea
+dIceAlbedo [0.5, 0.75, u] alb
+
+file   vpl.in
+dStopTime 3e6
+dOutputTime 10000

@@ -1,0 +1,27 @@
+srcfolder  .
+destfolder K_CaseC
+trialname  test
+samplemode random
+randsize 10000
+seed 30
+
+
+file   sun.in
+dLuminosity 1.30764e+26
+dMass 0.82
+
+file   earth.in
+dSemi [0.4876, 0.63, u] a
+
+dObliquity [0, 180, c] obl
+dObliqPer [100000, 25000, g, min0.0, max1000000] oper
+
+dEcc [0.05, 0.1, g, min0.0, max1.0] e
+dEccPer [100000, 25000, g, min0.0, max1000000] eper 
+
+dPrecA [0, 360, u] prea
+dIceAlbedo [0.55, 0.75, u] alb
+
+file   vpl.in
+dStopTime 2e6
+dOutputTime 10000

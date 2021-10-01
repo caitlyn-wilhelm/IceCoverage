@@ -1,0 +1,19 @@
+srcfolder .
+destfolder G_ColdStart
+trialname  test
+
+file   sun.in
+dLuminosity 3.846e26
+
+file   earth.in
+dObliquity [0, 90, n100] obl
+dSemi [0.83,0.97,n100] a
+
+dInitIceHeight 6.68459e-12
+dTGlobalInit -40
+dInitIceLat 0
+
+file   vpl.in
+
+
+

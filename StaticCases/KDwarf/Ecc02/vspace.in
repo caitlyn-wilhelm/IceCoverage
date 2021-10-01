@@ -1,0 +1,15 @@
+srcfolder  .
+destfolder K_Ecc02
+trialname  test
+
+file   sun.in
+dLuminosity 1.30764e+26
+dMass 0.82
+
+file   earth.in
+dObliquity [0, 90, n100] obl
+dSemi [0.4876, 0.63, n100] a
+dIceAlbedo 0.55
+dEcc 0.2
+
+file   vpl.in

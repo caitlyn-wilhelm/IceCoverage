@@ -10,22 +10,27 @@ import scipy.ndimage
 from matplotlib.pyplot import figure
 import matplotlib.lines as mlines
 import math
-
+import vplanet
 
 num = 100
 dest = [
-["/media/caitlyn/Data_Drive4/Projects/IceBelt/K_Cases/K_obl_stat_large/",
-"/media/caitlyn/Data_Drive4/Projects/IceBelt/K_Cases/K_ecc01_stat/",
-"/media/caitlyn/Data_Drive4/Projects/IceBelt/K_Cases/K_ecc02_stat/",
-"/media/caitlyn/Data_Drive4/Projects/IceBelt/K_Cases/K_ecc03_stat/"],
+["/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_obl_stat_large/K_exp10000/",
+"/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_ecc01_stat/K_exp10000_ecc01/",
+"/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_ecc02_stat/K_exp10000_ecc02/",
+"/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_ecc03_stat/K_exp10000_ecc03/"],
 
-["/media/caitlyn/Data_Drive4/Projects/IceBelt/G_Cases/G_obl_stat_large/",
-"/media/caitlyn/Data_Drive4/Projects/IceBelt/G_Cases/G_ecc01_stat/",
-"/media/caitlyn/Data_Drive4/Projects/IceBelt/G_Cases/G_ecc02_stat/"],
+["/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_obl_stat_large/Sol_exp10000/",
+"/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_ecc01_stat/Sol_exp10000_ecc01/",
+"/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_ecc02_stat/G_exp10000_ecc02/"],
 
-["/media/caitlyn/Data_Drive4/Projects/IceBelt/F_Cases/F_obl_stat_large/",
-"/media/caitlyn/Data_Drive4/Projects/IceBelt/F_Cases/F_ecc01_stat/"]
+["/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_obl_stat_large/F_exp10000/",
+"/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_ecc01_stat/F_exp10000_ecc01/"]
 ]
+
+matplotlib.rc('xtick', labelsize = 12)
+matplotlib.rc('ytick', labelsize = 12)
+
+
 style = ["solid","dashed", "dotted", "dashdot"]
 labels = ["e=0","e=0.1","e=0.2","e=0.3"]
 star = ["K Star", "G Star", "F Star"]
@@ -35,73 +40,146 @@ fig.subplots_adjust(top=0.913,bottom=0.079,left=0.14,right=0.952,hspace=0.35,wsp
 
 for i in range(len(dest)):
     for ii in range(len(dest[i])):
-        print(dest[i][ii])
-        try:
-            case = next(os.walk(os.path.join(dest[i][ii],'.')))[1][0]
-        except StopIteration:
-            pass
 
-        os.chdir(dest[i][ii])
+        folders = sorted([f.path for f in os.scandir(os.path.abspath(dest[i][ii])) if f.is_dir()])
+        #print(folders)
         num = int(num)
-        folders = sp.check_output("echo " + dest[i][ii] + case + "/semi_obl*", shell=True).split()
-        listf = dest[i][ii] + "/list_" + case
 
-        # if the list file exists, extract data for plotting
-        if os.path.exists(listf):
-            lum0, obliq0, semi0, inst, snowball, northCapL, northCapS, southCapL, southCapS, icebeltL, icebeltS, iceFree, tGlobal = np.loadtxt(listf, unpack=True)
-        else:
+        print(len(folders))
 
-            lum0 = np.zeros(len(folders))
-            obliq0 = np.zeros(len(folders))
-            semi0 = np.zeros(len(folders))
-            inst = np.zeros(len(folders))
-            snowball = np.zeros(len(folders))
-            northCapL = np.zeros(len(folders))
-            northCapS = np.zeros(len(folders))
-            southCapL = np.zeros(len(folders))
-            southCapS = np.zeros(len(folders))
-            icebeltL = np.zeros(len(folders))
-            icebeltS = np.zeros(len(folders))
-            iceFree = np.zeros(len(folders))
-            tGlobal = np.zeros(len(folders))
+        lum0 = np.zeros(len(folders))
+        obliq0 = np.zeros(len(folders))
+        semi0 = np.zeros(len(folders))
+        inst = np.zeros(len(folders))
 
-            crap = open(listf, "w")
-            for i in np.arange(len(folders)):
-                f = folders[i].decode('UTF-8')
-                print(f)
-                out = vpl.GetOutput(f)
-                lum0[i] = getattr(out.log.initial, 'sun').Luminosity
-                obliq0[i] = getattr(out.log.initial, 'earth').Obliquity
-                semi0[i] = getattr(out.log.initial, 'earth').SemiMajorAxis
-                inst[i] = getattr(out.log.final, 'earth').Instellation
+        snowballL = np.zeros(len(folders))
+        snowballS = np.zeros(len(folders))
+        snowball = np.zeros(len(folders))
 
-                snowball[i] = getattr(out.log.final, 'earth').Snowball
+        northCapL = np.zeros(len(folders))
+        northCapS = np.zeros(len(folders))
+        southCapL = np.zeros(len(folders))
+        southCapS = np.zeros(len(folders))
+        PolarCaps = np.zeros(len(folders))
 
-                northCapL[i] = getattr(out.log.final, 'earth').IceCapNorthLand
-                northCapS[i] = getattr(out.log.final, 'earth').IceCapNorthSea
+        icebeltL = np.zeros(len(folders))
+        icebeltS = np.zeros(len(folders))
+        IceBelt = np.zeros(len(folders))
 
-                southCapL[i] = getattr(out.log.final, 'earth').IceCapSouthLand
-                southCapS[i] = getattr(out.log.final, 'earth').IceCapSouthSea
+        iceFree = np.zeros(len(folders))
+        tGlobal = np.zeros(len(folders))
 
-                icebeltL[i] = getattr(out.log.final, 'earth').IceBeltLand
-                icebeltS[i] = getattr(out.log.final, 'earth').IceBeltSea
+        for j,value in enumerate(folders,start = 0):
+            print(value)
+            out = vplanet.get_output(value, units = False)
+            lum0[j] = getattr(out.log.initial, 'sun').Luminosity
+            obliq0[j] = getattr(out.log.initial, 'earth').Obliquity
+            semi0[j] = getattr(out.log.initial, 'earth').SemiMajorAxis
+            inst[j] = getattr(out.log.final, 'earth').Instellation
 
-                iceFree[i] = getattr(out.log.final, 'earth').IceFree
+            snowballL[j] = getattr(out.log.final, 'earth').SnowballLand
+            snowballS[j] = getattr(out.log.final, 'earth').SnowballSea
 
-                tGlobal[i] = getattr(out.log.final, 'earth').TGlobal
 
-                if snowball[i] == 1:
-                    icebeltL[i] = 0
-                    icebeltS[i] = 0
-                    northCapL[i] = 0
-                    northCapS[i] = 0
-                    southCapL[i] = 0
-                    southCapS[i] = 0
-                    iceFree[i] = 0
+            northCapL[j] = getattr(out.log.final, 'earth').IceCapNorthLand
+            northCapS[j] = getattr(out.log.final, 'earth').IceCapNorthSea
 
-                crap.write("%s %s %s %s %s %s %s %s %s %s %s %s %s \n" % (
-                    lum0[i], obliq0[i], semi0[i], inst[i], snowball[i], northCapL[i], northCapS[i], southCapL[i], southCapS[i], icebeltL[i], icebeltS[i], iceFree[i], tGlobal[i]))
+            southCapL[j] = getattr(out.log.final, 'earth').IceCapSouthLand
+            southCapS[j] = getattr(out.log.final, 'earth').IceCapSouthSea
 
+            icebeltL[j] = getattr(out.log.final, 'earth').IceBeltLand
+            icebeltS[j] = getattr(out.log.final, 'earth').IceBeltSea
+
+            iceFree[j] = getattr(out.log.final, 'earth').IceFree
+
+            tGlobal[j] = getattr(out.log.final, 'earth').TGlobal
+
+            if snowball[j] == 1:
+                icebeltL[j] = 0
+                icebeltS[j] = 0
+                northCapL[j] = 0
+                northCapS[j] = 0
+                southCapL[j] = 0
+                southCapS[j] = 0
+                iceFree[j] = 0
+
+            if (
+                #North Land, South Land
+                northCapL[j] == 1 and northCapS[j] == 0 and
+                southCapL[j] == 1 and southCapS[j] == 0 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Sea, South Land
+                northCapL[j] == 0 and northCapS[j] == 1 and
+                southCapL[j] == 1 and southCapS[j] == 0 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Both, South Land
+                northCapL[j] == 1 and northCapS[j] == 1 and
+                southCapL[j] == 1 and southCapS[j] == 0 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Land, South Sea
+                northCapL[j] == 1 and northCapS[j] == 0 and
+                southCapL[j] == 0 and southCapS[j] == 1 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Sea, South Sea
+                northCapL[j] == 0 and northCapS[j] == 1 and
+                southCapL[j] == 0 and southCapS[j] == 1 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Both, South Sea
+                northCapL[j] == 1 and northCapS[j] == 1 and
+                southCapL[j] == 0 and southCapS[j] == 1 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Land, South Both
+                northCapL[j] == 1 and northCapS[j] == 0 and
+                southCapL[j] == 1 and southCapS[j] == 1 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Sea, South Both
+                northCapL[j] == 0 and northCapS[j] == 1 and
+                southCapL[j] == 1 and southCapS[j] == 1 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #North Both, South Both
+                northCapL[j] == 1 and northCapS[j] == 1 and
+                southCapL[j] == 1 and southCapS[j] == 1 and
+                icebeltL[j] == 0  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0
+            ):
+                PolarCaps[j] = 1
+
+            if (
+                #Land
+                northCapL[j] == 0 and northCapS[j] == 0 and
+                southCapL[j] == 0 and southCapS[j] == 0 and
+                icebeltL[j] == 1  and icebeltS[j] == 0  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #Sea
+                northCapL[j] == 0 and northCapS[j] == 0 and
+                southCapL[j] == 0 and southCapS[j] == 0 and
+                icebeltL[j] == 0  and icebeltS[j] == 1  and
+                snowballL[j] == 0 and snowballS[j] == 0 or
+
+                #Both
+                northCapL[j] == 0 and northCapS[j] == 0 and
+                southCapL[j] == 0 and southCapS[j] == 0 and
+                icebeltL[j] == 1  and icebeltS[j] == 1 and
+                snowballL[j] == 0 and snowballS[j] == 0
+            ):
+                IceBelt[j] = 1
 
         lum0 = np.reshape(lum0, (num, num))
         obliq0 = np.reshape(obliq0, (num, num)) * 180 / np.pi
@@ -116,15 +194,16 @@ for i in range(len(dest)):
         icebeltS = np.reshape(icebeltS, (num, num))
         iceFree = np.reshape(iceFree, (num, num))
         tGlobal = np.reshape(tGlobal, (num, num))
+        PolarCaps = np.reshape(PolarCaps, (num, num))
+        IceBelt = np.reshape(IceBelt, (num, num))
 
-        icF = axs[i].contour(obliq0,inst,icebeltL, [0.5, 1], colors = 'black', linestyles = style[ii])
+        icF = axs[i].contour(obliq0,inst,IceBelt, [0.5, 1], colors = 'black', linestyles = style[ii])
+        pc = axs[i].contour(obliq0,inst,PolarCaps, [0.5, 1], colors = 'black', linestyles = style[ii])
 
     e0 = mlines.Line2D([],[],color = 'black',linewidth=2,label = labels[0],linestyle = style[0])
     e1 = mlines.Line2D([],[],color = 'black',linewidth=2,label = labels[1],linestyle = style[1])
     e2 = mlines.Line2D([],[],color = 'black',linewidth=2,label = labels[2],linestyle = style[2])
     e3 = mlines.Line2D([],[],color = 'black',linewidth=2,label = labels[3],linestyle = style[3])
-
-    axs[2].set_yticks([0.925,0.95,0.975,1])
 
     axs[0].set_title("K Star", fontsize = 16)
     axs[1].set_title("G Star", fontsize = 16)
@@ -134,20 +213,23 @@ for i in range(len(dest)):
     axs[1].set_ylabel("Instellation [Earth]", fontsize=14)
     axs[2].set_xlabel("Obliquity [$^\circ$]", fontsize=14)
 
-    axs[0].set_xlim(40,90)
-    axs[1].set_xlim(40,90)
-    axs[2].set_xlim(40,90)
+    axs[0].set_xlim(0,90)
+    axs[1].set_xlim(0,90)
+    axs[2].set_xlim(0,90)
 
-    axs[0].set_ylim(0.838,1.013)
-    axs[1].set_ylim(0.893,1.013)
-    axs[2].set_ylim(0.935,1.013)
+    # axs[i].set_xticks(obliq0)
+    # axs[i].set_yticks(inst)
+
+    axs[0].set_ylim(0.87,1.225)
+    axs[1].set_ylim(0.875,1.225)
+    axs[2].set_ylim(0.935,1.225)
 
 plt.tight_layout()
-os.chdir('/home/caitlyn/IceBelt/EccCompare')
+# os.chdir('/home/caitlyn/IceSheet/EccCompareIceBelt')
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('EccCompare' + '.pdf')
+    plt.savefig('EccCompare2' + '.pdf')
 if (sys.argv[1] == 'png'):
-    plt.savefig('EccCompare' + '.png')
+    plt.savefig('EccCompare2' + '.png')
 
 plt.show()
 plt.close()
