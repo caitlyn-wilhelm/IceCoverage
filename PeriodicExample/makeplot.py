@@ -6,6 +6,7 @@ import os
 import subprocess
 import re
 import sys
+import vplanet
 
 def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   """
@@ -48,7 +49,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   fig.subplots_adjust(wspace=0.5,hspace = 0.5)
 
   for ii in np.arange(nfiles):
-    out = vpl.GetOutput(dir[ii])
+    out = vplanet.get_output(dir[ii], units = False)
 
     ctmp = 0
     for p in range(len(out.bodies)):
@@ -116,7 +117,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
     # plot albedo
@@ -131,7 +133,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
 
@@ -147,7 +150,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
 
@@ -164,7 +168,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
     # plot insolation
@@ -179,7 +184,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
     #obliquity

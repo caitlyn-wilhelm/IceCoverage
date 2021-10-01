@@ -117,7 +117,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
     # plot albedo
@@ -132,7 +133,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
 
@@ -148,7 +150,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
 
@@ -165,7 +168,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
     # plot insolation
@@ -180,7 +184,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
-    cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
+    cbar = plt.colorbar(c)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
     #obliquity
@@ -216,9 +221,9 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
       dir[ii] = 'cwd'
 
     if (sys.argv[1] == 'pdf'):
-        plt.savefig('Evolve_Example.pdf')
+        plt.savefig('DynamicExample.pdf')
     if (sys.argv[1] == 'png'):
-        plt.savefig('Evolve_Example.png')
+        plt.savefig('DynamicExample.png')
     if show:
         plt.show()
     else:

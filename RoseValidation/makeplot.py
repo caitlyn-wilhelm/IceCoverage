@@ -118,6 +118,7 @@ def clim_evol(plname, xrange=False, show=True):
     nlats = len(lats)
     ntimes = len(body.Time)
 
+
     # plot temperature
     temp = np.reshape(body.TempLat, (ntimes, nlats))
     ax1 = plt.subplot(5, 1, 1)
@@ -125,9 +126,11 @@ def clim_evol(plname, xrange=False, show=True):
     c = plt.contourf(body.Time, lats, temp.T, cmap="plasma")
     plt.ylabel(r"Latitude [$^\circ$]", fontsize=10)
     plt.title(r"Surface Temp [$^{\circ}$C]", fontsize=12)
-    plt.ylim(-90, 90)
+    plt.ylim(-85, 85)
     plt.yticks([-60, -30, 0, 30, 60], fontsize=9)
-    plt.xticks(fontsize=9)
+    plt.xticks([0,20000,40000,60000,80000,100000],fontsize=9)
+    plt.ticklabel_format(style = 'plain')
+
     if xrange == False:
         left = 0
     else:
@@ -137,62 +140,83 @@ def clim_evol(plname, xrange=False, show=True):
     cbar = plt.colorbar(c, ax=ax1)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize=9)
 
-    # plot albedo
-    alb = np.reshape(body.AlbedoLat, (ntimes, nlats))
-    ax2 = plt.subplot(5, 1, 3)
-    c = plt.contourf(body.Time, lats, alb.T, cmap="Blues_r")
+    # plot albedo (sea)
+    ax2 = plt.subplot(5, 1, 2)
+    alb_water = np.reshape(body.AlbedoWaterLat, (ntimes, nlats))
+    c = plt.contourf(body.Time, lats, alb_water.T, cmap="Blues_r")
     plt.ylabel(r"Latitude [$^\circ$]", fontsize=10)
-    plt.title("Albedo [TOA]", fontsize=12)
-    plt.ylim(-90, 90)
+    plt.title("Albedo Sea [TOA]", fontsize=12)
+    plt.ylim(-85, 85)
     plt.yticks([-60, -30, 0, 30, 60], fontsize=9)
-    plt.xticks(fontsize=9)
+    plt.xticks([0,20000,40000,60000,80000,100000],fontsize=9)
+    plt.ticklabel_format(style = 'plain')
     if xrange:
         plt.xlim(xrange)
     cbar = plt.colorbar(c, ax=ax2)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize=9)
 
-    # plot ice height
-    ice = np.reshape(body.IceHeight, (ntimes, nlats))
-    ax3 = plt.subplot(5, 1, 4)
-    c = plt.contourf(body.Time, lats, ice.T, cmap="Blues_r")
+    # plot albedo land
+    ax3 = plt.subplot(5, 1, 3)
+    alb_land = np.reshape(body.AlbedoLandLat, (ntimes, nlats))
+    c = plt.contourf(body.Time, lats, alb_land.T, cmap="Blues_r")
     plt.ylabel(r"Latitude [$^\circ$]", fontsize=10)
-    plt.title("Ice sheet height [m]", fontsize=12)
-    plt.ylim(-90, 90)
+    plt.title("Albedo Land [TOA]", fontsize=12)
+    plt.ylim(-84, 84)
     plt.yticks([-60, -30, 0, 30, 60], fontsize=9)
+    plt.xticks([0,20000,40000,60000,80000,100000],fontsize=9)
+    plt.ticklabel_format(style = 'plain')
     plt.xticks(fontsize=9)
     if xrange:
         plt.xlim(xrange)
     cbar = plt.colorbar(c, ax=ax3)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize=9)
 
-    # plot bedrock
-    brock = np.reshape(body.BedrockH, (ntimes, nlats))
-    ax4 = plt.subplot(5, 1, 5)
-    c = plt.contourf(body.Time, lats, brock.T, cmap="Reds_r")
+
+    # # plot albedo
+    # alb = np.reshape(body.AlbedoLat, (ntimes, nlats))
+    # ax3 = plt.subplot(5, 1, 3)
+    # c = plt.contourf(body.Time, lats, alb.T, cmap="Blues_r")
+    # plt.ylabel(r"Latitude [$^\circ$]", fontsize=10)
+    # plt.title("Albedo [TOA]", fontsize=12)
+    # plt.ylim(-85, 85)
+    # plt.yticks([-60, -30, 0, 30, 60], fontsize=9)
+    # plt.xticks(fontsize=9)
+    # if xrange:
+    #     plt.xlim(xrange)
+    # cbar = plt.colorbar(c, ax=ax3)
+    # plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize=9)
+
+    # plot ice height
+    ice = np.reshape(body.IceHeight, (ntimes, nlats))
+    ax4 = plt.subplot(5, 1, 4)
+    c = plt.contourf(body.Time, lats, ice.T, cmap="Blues_r")
     plt.ylabel(r"Latitude [$^\circ$]", fontsize=10)
-    plt.title("Bedrock height [m]", fontsize=12)
-    plt.ylim(-90, 90)
+    plt.title("Ice Sheet Height [m]", fontsize=12)
+    plt.ylim(-85, 85)
     plt.yticks([-60, -30, 0, 30, 60], fontsize=9)
-    plt.xlabel("Time [years]", fontsize=10)
-    plt.xticks(fontsize=9)
+    plt.xticks([0,20000,40000,60000,80000,100000],fontsize=9)
+    plt.ticklabel_format(style = 'plain')
     if xrange:
         plt.xlim(xrange)
     cbar = plt.colorbar(c, ax=ax4)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize=9)
 
-    # plot insolation
-    insol = np.reshape(body.AnnInsol, (ntimes, nlats))
-    ax5 = plt.subplot(5, 1, 2)
-    c = plt.contourf(body.Time, lats, insol.T, cmap="plasma")
+    # plot bedrock
+    brock = np.reshape(body.BedrockH, (ntimes, nlats))
+    ax5 = plt.subplot(5, 1, 5)
+    c = plt.contourf(body.Time, lats, brock.T, cmap="Reds_r")
     plt.ylabel(r"Latitude [$^\circ$]", fontsize=10)
-    plt.title(r"Annual average insolation [W/m$^2$]", fontsize=12)
-    plt.ylim(-90, 90)
+    plt.title("Bedrock Height [m]", fontsize=12)
+    plt.ylim(-85, 85)
     plt.yticks([-60, -30, 0, 30, 60], fontsize=9)
-    plt.xticks(fontsize=9)
+    plt.xlabel("Time [years]", fontsize=10)
+    plt.xticks([0,20000,40000,60000,80000,100000],fontsize=9)
+    plt.ticklabel_format(style = 'plain')
     if xrange:
         plt.xlim(xrange)
     cbar = plt.colorbar(c, ax=ax5)
     plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize=9)
+
 
     # Save
     ext = get_args().ext
