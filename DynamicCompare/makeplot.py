@@ -32,8 +32,9 @@ F_norm = [307, 7785, 51, 215, 69, 1573]
 F_norm_alb = [319, 7782, 35, 197, 78, 1588]
 F_alb_gu = [294, 7483 ,47, 168, 81, 1923]
 F_alb_un = [308, 7491, 29, 180, 66, 1924]
+F_rotation = [304,7795,43,191,73,1594]
 
-F_Cases = [F_norm,F_norm_alb,F_alb_gu,F_alb_un]
+F_Cases = [F_norm,F_norm_alb,F_alb_gu,F_alb_un,F_rotation]
 
 G_norm = [401,7054,26,216,385,1918]
 G_norm_alb = [391,7065,28,204,400,1911]
