@@ -195,7 +195,7 @@ plt.annotate("IceBelt",xy=(75, 0.975), fontsize = 14.5)
 plt.annotate("Polar Caps",xy=(2,1.05), fontsize = 14.5)
 plt.annotate("Ice Free",xy=(45,1.1), fontsize = 14.5)
 
-plt.legend(handles = [line0,line1,line2], loc='upper right', fontsize=14)
+plt.legend(handles = [line0,line1,line2], loc='upper right', fontsize=14,edgecolor='k')
 
 plt.ylabel('Instellation [Earth]', fontsize=16)
 plt.xlabel(r'Obliquity [$^\circ$]', fontsize=16)

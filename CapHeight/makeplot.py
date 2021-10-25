@@ -139,14 +139,14 @@ for x in range(len(dest)):
     axs[1].set_yticks([0.0,2.5,5.0])
     axs[0].set_yticks([0.0,2.5,5.0])
 
-    axs[0].set_title("K Star", fontsize = 16)
-    axs[1].set_title("G Star", fontsize = 16)
-    axs[2].set_title("F Star", fontsize = 16)
+    axs[0].set_title("K Dwarf", fontsize = 16)
+    axs[1].set_title("G Dwarf", fontsize = 16)
+    axs[2].set_title("F Dwarf", fontsize = 16)
 
     axs[x].set_xlabel(r'Latitude [$^\circ$]', fontsize = 12)
     axs[x].set_ylabel("Ice Height [km]", fontsize = 12)
 
-    axs[0].legend(handles = [indi_leg_pc,avg_leg], fontsize=14, loc = 'upper left', bbox_to_anchor=(0, 1.75, 1, 0.102),ncol=2, mode="expand", borderaxespad=0)
+    axs[0].legend(handles = [indi_leg_pc,avg_leg], fontsize=14, loc = 'upper left', bbox_to_anchor=(0, 1.75, 1, 0.102),ncol=2, mode="expand", borderaxespad=0,edgecolor='k')
 
 
 plt.tight_layout()

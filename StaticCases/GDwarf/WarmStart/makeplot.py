@@ -7,9 +7,8 @@ import os
 import sys
 from matplotlib.pyplot import figure
 #bigplanet imports
-from bigplanet import ExtractColumn
-from bigplanet import ExtractUniqueValues
-from bigplanet import CreateMatrix
+from bigplanet.bp_extract import *
+
 import h5py
 
 #changes cwd to where the file is
@@ -17,26 +16,26 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 #Variable list
 dest = "GDwarfStatic"
-HDF5_File = h5py.File('GDwarfStatic.hdf5', 'r')
+HDF5_File = h5py.File('Testy.bpf', 'r')
 
 #grabs columns needed for calulations and data
-earth_Obliq = ExtractColumn(HDF5_File,'earth_Obliquity_final')
-earth_instel = ExtractColumn(HDF5_File,'earth_Instellation_final')
+#earth_Obliq = ExtractColumn(HDF5_File,'earth:Obliquity:final')
+# = ExtractColumn(HDF5_File,'earth:Instellation:final')
 
-earth_icebelt_L = ExtractColumn(HDF5_File,'earth_IceBeltLand_final')
-earth_icebelt_S = ExtractColumn(HDF5_File,'earth_IceBeltSea_final')
-earth_northcap_L = ExtractColumn(HDF5_File,'earth_IceCapNorthLand_final')
-earth_northcap_S = ExtractColumn(HDF5_File,'earth_IceCapNorthSea_final')
-earth_southcap_L = ExtractColumn(HDF5_File,'earth_IceCapSouthLand_final')
-earth_southcap_S = ExtractColumn(HDF5_File,'earth_IceCapSouthSea_final')
+earth_icebelt_L = ExtractColumn(HDF5_File,'earth:IceBeltLand:final')
+earth_icebelt_S = ExtractColumn(HDF5_File,'earth:IceBeltSea:final')
+earth_northcap_L = ExtractColumn(HDF5_File,'earth:IceCapNorthLand:final')
+earth_northcap_S = ExtractColumn(HDF5_File,'earth:IceCapNorthSea:final')
+earth_southcap_L = ExtractColumn(HDF5_File,'earth:IceCapSouthLand:final')
+earth_southcap_S = ExtractColumn(HDF5_File,'earth:IceCapSouthSea:final')
 
-earth_icefree = ExtractColumn(HDF5_File,'earth_IceFree_final')
-earth_snowball = ExtractColumn(HDF5_File,'earth_Snowball_final')
+earth_icefree = ExtractColumn(HDF5_File,'earth:IceFree:final')
+earth_snowball = ExtractColumn(HDF5_File,'earth:Snowball:final')
 
 
 #gets the x and y axis data
-earth_Obliq_uniq = ExtractUniqueValues(HDF5_File,'earth_Obliquity_forward')
-earth_intstel_uniq = ExtractUniqueValues(HDF5_File,'earth_Instellation_final')
+earth_Obliq_uniq = ExtractUniqueValues(HDF5_File,'earth:Obliquity:forward')
+earth_intstel_uniq = ExtractUniqueValues(HDF5_File,'earth:Instellation:final')
 
 #changing units of y axis
 earth_intstel_uniq =  np.reshape(earth_intstel_uniq,(earth_intstel_uniq.shape)) / 1350
@@ -80,7 +79,7 @@ Capsmatrix = CreateMatrix(earth_Obliq_uniq, earth_intstel_uniq, PolarCaps)
 plt.figure(figsize=(9,6.5))
 plt.ylabel("Instellation [Earth]", fontsize=16)
 plt.xlabel("Obliquity [$^\circ$]", fontsize=16)
-#plt.ylim(0.891,1.211)
+plt.ylim(0.891,1.211)
 plt.xlim(0,90)
 
 #plots data

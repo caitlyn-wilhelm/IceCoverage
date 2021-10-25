@@ -33,7 +33,7 @@ matplotlib.rc('ytick', labelsize = 12)
 
 style = ["solid","dashed", "dotted", "dashdot"]
 labels = ["e=0","e=0.1","e=0.2","e=0.3"]
-star = ["K Star", "G Star", "F Star"]
+star = ["K Dwarf", "G Dwarf", "F Dwarf"]
 
 fig, axs = plt.subplots(3,1,figsize=(6.5,9))
 fig.subplots_adjust(top=0.913,bottom=0.079,left=0.14,right=0.952,hspace=0.35,wspace=0.13)
@@ -205,11 +205,11 @@ for i in range(len(dest)):
     e2 = mlines.Line2D([],[],color = 'black',linewidth=2,label = labels[2],linestyle = style[2])
     e3 = mlines.Line2D([],[],color = 'black',linewidth=2,label = labels[3],linestyle = style[3])
 
-    axs[0].set_title("K Star", fontsize = 16)
-    axs[1].set_title("G Star", fontsize = 16)
-    axs[2].set_title("F Star", fontsize = 16)
+    axs[0].set_title("K Dwarf", fontsize = 16)
+    axs[1].set_title("G Dwarf", fontsize = 16)
+    axs[2].set_title("F Dwarf", fontsize = 16)
 
-    axs[0].legend(handles = [e0,e1,e2,e3], fontsize=14, loc = 'upper left', bbox_to_anchor=(0, 1.25, 1, 0.102),ncol=4, mode="expand", borderaxespad=0)
+    axs[0].legend(handles = [e0,e1,e2,e3], fontsize=14, loc = 'upper left', bbox_to_anchor=(0, 1.25, 1, 0.102),ncol=4, mode="expand", borderaxespad=0,edgecolor='k')
     axs[1].set_ylabel("Instellation [Earth]", fontsize=14)
     axs[2].set_xlabel("Obliquity [$^\circ$]", fontsize=14)
 

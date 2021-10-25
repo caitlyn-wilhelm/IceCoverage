@@ -2,6 +2,7 @@ import subprocess as sp
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+import vplanet
 import vplot as vpl
 import os
 import matplotlib.patches as mpatches
@@ -11,10 +12,10 @@ from matplotlib.pyplot import figure
 import matplotlib.lines as mlines
 
 
-dest = ['/media/caitlyn/Data_Drive2/Projects/IceBelt/K_Cases/K_Monte_Carlo_large/',
-        '/media/caitlyn/Data_Drive2/Projects/IceBelt/G_Cases/G_Monte_Carlo_Large_2/',
-        '/media/caitlyn/Data_Drive2/Projects/IceBelt/F_Cases/F_Monte_Carlo_large/']
-star = ['K Star','G Star','F Star']
+dest = ['/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_Monte_Carlo_large/',
+        '/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_Monte_Carlo_Large_2/',
+        '/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_Monte_Carlo_large/']
+star = ['K Dwarf','G Dwarf','F Dwarf']
 num = 10000
 
 fig, axs = plt.subplots(3,1,figsize=(9,7))
@@ -54,7 +55,7 @@ for x in range(len(dest)):
                 snowballL == 0 and snowballS == 0
             ):
                 if icecount <= 70:
-                    out = vpl.GetOutput(folders[number])
+                    out = vplanet.get_output(folders[number], units = False)
                     body = out.bodies[1]
 
                     lats = np.unique(body.Latitude)
@@ -87,19 +88,19 @@ for x in range(len(dest)):
     axs[1].set_yticks([0.0,2.5,5.0])
     axs[2].set_yticks([0.0,2.5,5.0])
 
-    axs[0].set_title("K Star", fontsize = 16)
-    axs[1].set_title("G Star", fontsize = 16)
-    axs[2].set_title("F Star", fontsize = 16)
+    axs[0].set_title("K Dwarf", fontsize = 16)
+    axs[1].set_title("G Dwarf", fontsize = 16)
+    axs[2].set_title("F Dwarf", fontsize = 16)
 
     axs[x].set_xlabel(r'Latitude [$^\circ$]', fontsize = 12)
     axs[x].set_ylabel("Ice Height [km]", fontsize = 12)
 
     axs[0].legend(handles = [indi_leg,avg_leg], fontsize=14, loc = 'upper left',
-                bbox_to_anchor=(0, 1.75, 1, 0.102),ncol=2, mode="expand", borderaxespad=0)
+                bbox_to_anchor=(0, 1.75, 1, 0.102),ncol=2, mode="expand", borderaxespad=0,edgecolor='k')
 
 
 plt.tight_layout()
-os.chdir('/home/caitlyn/IceBelt/BeltHeight')
+os.chdir('/home/caitlyn/IceSheet/BeltHeight')
 if (sys.argv[1] == 'pdf'):
     plt.savefig('BeltHeight' + '.pdf')
 if (sys.argv[1] == 'png'):

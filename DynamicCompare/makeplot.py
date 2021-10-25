@@ -57,12 +57,12 @@ All = [K_Cases,G_Cases,F_Cases]
 x = np.arange(len(labels))
 width = 0.2
 fig, axs = plt.subplots(3,1,figsize=(9,8))
-fig.subplots_adjust(top=0.85,hspace = 0.6)
+fig.subplots_adjust(top=0.83,hspace = 0.54)
 
 for i in range(len(All)):
-    axs[0].set_title("K Star", fontsize = 16)
-    axs[1].set_title("G Star", fontsize = 16)
-    axs[2].set_title("F Star", fontsize = 16)
+    axs[0].set_title("K Dwarf", fontsize = 16)
+    axs[1].set_title("G Dwarf", fontsize = 16)
+    axs[2].set_title("F Dwarf", fontsize = 16)
     subcatagorybar(labels,All[i],i,colors)
     axs[i].set_ylabel("Number of Cases", fontsize = 14)
     axs[i].set_xticklabels(labels, fontsize = 12)
@@ -73,8 +73,9 @@ for i in range(len(All)):
     #axs[i].set_yticklabels(labels = ytk, fontsize = 12)
 
 handles = [mpatches.Patch(color = colors[count], label = value) for count, value in enumerate(legend)]
-plt.legend(handles = handles, fontsize = 14, bbox_to_anchor=(0.,4.45,1.,.105),loc = 'lower left',
-           ncol=2, mode="expand", borderaxespad=0)
+
+plt.legend(handles = handles, fontsize = 14, bbox_to_anchor=(0.,4.35,1.,.105),loc = 'lower left',
+           ncol=2, mode="expand", borderaxespad=0,edgecolor='k')
 
 if (sys.argv[1] == 'pdf'):
     plt.savefig('DynamicCompare' + '.pdf')

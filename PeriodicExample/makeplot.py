@@ -197,6 +197,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
 
     if xrange:
         plt.xlim(xrange)
+        plt.xticks([0,50000,100000,150000,200000])
 
     #eccentricity
     plt.subplot(4,2,6)
@@ -206,6 +207,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.yticks(fontsize = 9)
     if xrange:
         plt.xlim(xrange)
+        plt.xticks([0,50000,100000,150000,200000])
 
     #e sin(obl) sin varpi
     plt.subplot(4,2,8)
@@ -216,6 +218,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     plt.yticks(fontsize = 9)
     if xrange:
         plt.xlim(xrange)
+        plt.xticks([0,50000,100000,150000,200000])
 
     if dir[ii] == '.':
       dir[ii] = 'cwd'

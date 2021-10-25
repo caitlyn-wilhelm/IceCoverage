@@ -167,6 +167,7 @@ for x,dest in enumerate(case_list):
 
     iFF = axs[x].contourf(obliq0,inst,iceFree,[0,1],colors = vpl.colors.dark_blue)
     sNF = axs[x].contourf(obliq0,inst,snowball,[0.5,1],colors = '#efefef')
+    sNF = axs[x].contour(obliq0,inst,snowball,1,colors = 'k')
     PcF = axs[x].contourf(obliq0,inst,PolarCaps,[0.5,1],colors = vpl.colors.purple)
     icF = axs[x].contourf(obliq0,inst,icebeltL,[0.5,1],colors = vpl.colors.pale_blue)
     icF = axs[x].contourf(obliq0,inst,icebeltS,[0.5,1],colors = vpl.colors.pale_blue)
@@ -180,8 +181,8 @@ for x,dest in enumerate(case_list):
     axs[0].legend([h1[0], h2[0], h3[0], h4[0]], [ 'Ice Free', 'Ice Belt', 'Snowball','Polar Ice Caps'],
                loc = 'upper left', bbox_to_anchor=(0, 1.1, 1, 0.11),ncol=4, mode="expand", borderaxespad=0)
 
-    axs[0].set_title("G Star Warm Start", fontsize = 16)
-    axs[1].set_title("G Star Cold Start", fontsize = 16)
+    axs[0].set_title("G Dwarf, Warm Start", fontsize = 16)
+    axs[1].set_title("G Dwarf, Cold Start", fontsize = 16)
 
     axs[x].set_ylabel("Instellation [Earth]", fontsize=14)
     axs[x].set_xlabel("Obliquity [$^\circ$]", fontsize=14)

@@ -108,8 +108,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot temperature
     temp = np.reshape(body.TempLat,(ntimes,nlats))
     ax1 = plt.subplot(4,2,1)
-    pos = ax1.figbox.get_points()
-    c = plt.contourf(body.Time,lats,temp.T,cmap='plasma')
+    #pos = ax1.figbox.get_points()
+    c = plt.contourf((body.Time/1e6),lats,temp.T,cmap='plasma')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title(r'Surface Temp [$^{\circ}$C]', fontsize = 12)
     plt.ylim(-85,85)
@@ -124,8 +124,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot albedo
     alb = np.reshape(body.AlbedoLat,(ntimes,nlats))
     ax2 = plt.subplot(4,2,3)
-    pos = ax2.figbox.get_points()
-    c = plt.contourf(body.Time,lats,alb.T,cmap = 'Blues_r')
+    #pos = ax2.figbox.get_points()
+    c = plt.contourf((body.Time/1e6),lats,alb.T,cmap = 'Blues_r')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title('Albedo [TOA]', fontsize = 12)
     plt.ylim(-85,85)
@@ -141,8 +141,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot ice height
     ice = np.reshape(body.IceHeight,(ntimes,nlats))
     ax3 = plt.subplot(4,2,5)
-    pos = ax3.figbox.get_points()
-    c = plt.contourf(body.Time,lats,ice.T,cmap='Blues_r')
+    #pos = ax3.figbox.get_points()
+    c = plt.contourf((body.Time/1e6),lats,ice.T,cmap='Blues_r')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title('Ice sheet height [m]', fontsize = 12)
     plt.ylim(-85,85)
@@ -158,13 +158,14 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot bedrock
     brock = np.reshape(body.BedrockH,(ntimes,nlats))
     ax4 = plt.subplot(4,2,7)
-    pos = ax4.figbox.get_points()
-    c = plt.contourf(body.Time,lats,brock.T,cmap='Reds_r')
+    #pos = ax4.figbox.get_points()
+    c = plt.contourf((body.Time/1e6),lats,brock.T,cmap='Reds_r')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title('Bedrock height [m]', fontsize = 12)
     plt.ylim(-85,85)
     plt.yticks([-60,-30,0,30,60], fontsize = 9)
-    plt.xlabel('Time [years]',fontsize = 10)
+    plt.xlabel('Time [Myr]',fontsize = 10)
+    plt.ticklabel_format(useOffset = False)
     plt.xticks(fontsize = 9)
     if xrange:
       plt.xlim(xrange)
@@ -175,8 +176,8 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot insolation
     insol = np.reshape(body.AnnInsol,(ntimes,nlats))
     ax5 = plt.subplot(4,2,2)
-    pos = ax5.figbox.get_points()
-    c = plt.contourf(body.Time,lats,insol.T,cmap='plasma')
+    #pos = ax5.figbox.get_points()
+    c = plt.contourf((body.Time/1e6),lats,insol.T,cmap='plasma')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title(r'Annual average instellation [W/m$^2$]', fontsize = 12)
     plt.ylim(-85,85)
@@ -190,7 +191,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
 
     #obliquity
     plt.subplot(4,2,4)
-    plt.plot(body.Time,obl,linestyle = 'solid',marker='None',color='darkblue',linewidth =2)
+    plt.plot((body.Time/1e6),obl,linestyle = 'solid',marker='None',color='darkblue',linewidth =2)
     plt.ylabel(r'Obliquity [$^\circ$]', fontsize = 10)
     plt.yticks(fontsize = 9)
     plt.xticks(fontsize = 9)
@@ -200,7 +201,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
 
     #eccentricity
     plt.subplot(4,2,6)
-    plt.plot(body.Time,ecc,linestyle = 'solid',marker='None',color='darkorchid',linewidth =2)
+    plt.plot((body.Time/1e6),ecc,linestyle = 'solid',marker='None',color='darkorchid',linewidth =2)
     plt.ylabel('Eccentricity', fontsize = 10)
     plt.xticks(fontsize = 9)
     plt.yticks(fontsize = 9)
@@ -209,9 +210,9 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
 
     #e sin(obl) sin varpi
     plt.subplot(4,2,8)
-    plt.plot(body.Time,esinv,linestyle = 'solid',marker='None',color='salmon',linewidth=2)
+    plt.plot((body.Time/1e6),esinv,linestyle = 'solid',marker='None',color='salmon',linewidth=2)
     plt.ylabel('COPP', fontsize = 10)
-    plt.xlabel('Time [years]', fontsize = 10)
+    plt.xlabel('Time [Myr]', fontsize = 10)
     plt.xticks(fontsize = 9)
     plt.yticks(fontsize = 9)
     if xrange:
