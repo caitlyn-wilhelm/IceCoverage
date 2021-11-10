@@ -7,5 +7,5 @@ To generate the plot, type the following code:
 python makeplot.py <pdf | png>
 ```
 
-This should generate the plot:
+This should generate the following figure:
 ![StaticCompare](StaticCompare.png)
