@@ -22,4 +22,4 @@ python makeplot.py <pdf | png>
 
 This should generate the following plot:
 
-![EvolveExample](https://github.com/caitlyn-wilhelm/IceSheet/blob/master/DynamicExample/DynamicExample.png)
+![EvolveExample](DynamicExample.png)
