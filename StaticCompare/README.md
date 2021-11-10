@@ -8,4 +8,4 @@ python makeplot.py <pdf | png>
 ```
 
 This should generate the plot:
-![StaticCompare](https://github.com/caitlyn-wilhelm/IceSheet/blob/master/StaticCompare/StaticCompare.png)
+![StaticCompare](StaticCompare.png)
