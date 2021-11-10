@@ -8,4 +8,4 @@ python makeplot.py <pdf | png>
 ```
 
 This should generate the plot:
-![CapHeight](https://github.com/caitlyn-wilhelm/IceSheet/blob/master/CapHeight/CapHeight.png)
+![CapHeight](CapHeight.png)
