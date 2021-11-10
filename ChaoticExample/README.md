@@ -22,4 +22,4 @@ python makeplot.py <pdf | png>
 
 This should generate the following plot:
 
-![PeriodicCase](https://github.com/caitlyn-wilhelm/IceSheet/blob/master/ChaoticExample/ChaoticExample.png)
+![ChaoticExample](ChaoticExample.png)
