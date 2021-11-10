@@ -8,4 +8,4 @@ python makeplot.py <pdf | png>
 ```
 
 This should generate the plot:
-![BeltHeight](https://github.com/caitlyn-wilhelm/IceSheet/blob/master/BeltHeight/BeltHeight.png)
+![BeltHeight](BeltHeight.png)
