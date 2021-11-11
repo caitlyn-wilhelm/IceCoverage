@@ -27,3 +27,6 @@ Because of the seed in the vspace.in file, you should generate identical data to
 ```
 bigplanet bpl.in
 ```
+
+This generates a bpf file which is a filtered version of all the data needed for making the various figures. 
+
