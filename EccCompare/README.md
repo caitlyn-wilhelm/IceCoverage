@@ -25,4 +25,5 @@ python makeplot.py <pdf | png>
 ```
 
 This should generate the plot:
+
 ![EccCompare](EccCompare.png)
