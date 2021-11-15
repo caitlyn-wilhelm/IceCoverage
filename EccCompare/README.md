@@ -25,4 +25,4 @@ python makeplot.py <pdf | png>
 ```
 
 This should generate the plot:
-![EccCompare](https://github.com/caitlyn-wilhelm/IceSheet/blob/master/EccCompare/EccCompare.png)
+![EccCompare](EccCompare.png)
