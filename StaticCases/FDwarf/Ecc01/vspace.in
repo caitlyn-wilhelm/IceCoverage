@@ -1,0 +1,15 @@
+srcfolder  .
+destfolder F_exp10000_ecc01
+trialname  test_
+
+file   sun.in
+dLuminosity 1.330716e+27
+dMass 1.48
+
+file   earth.in
+dObliquity [0, 90, n100] obl
+dSemi [1.55,1.94,n100]
+dIceAlbedo 0.63
+dEcc 0.1
+
+file   vpl.in

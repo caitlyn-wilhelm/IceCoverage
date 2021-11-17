@@ -1,0 +1,13 @@
+sDestFolder ../DynamicCases/CaseA/GDwarf/G_CaseA
+sArchiveFile G_CaseA.bpla
+sOutputFile DynamicExample.bpf
+sSimName testrand_0251
+
+saBodyFiles earth.in sun.in
+sPrimaryFile vpl.in
+
+saKeyInclude earth:COPP:forward earth:Eccentricity:forward earth:Obliquity:forward earth:Time:forward $
+             earth:Latitude:climate earth:TempLat:climate earth:AnnInsol:climate $
+             earth:AlbedoLat:climate earth:IceHeight:climate earth:BedrockH:climate
+
+

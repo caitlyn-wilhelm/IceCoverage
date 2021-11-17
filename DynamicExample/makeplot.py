@@ -7,6 +7,7 @@ import subprocess
 import re
 import sys
 import vplanet
+import bigplanet as bp
 
 def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   """
@@ -78,29 +79,33 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
         obltmp *= 180/np.pi
       obl = np.zeros_like(body.Time)+obltmp
 
+
+    print(obl)
+    print(len(obl))
+    
     f = open(dir[ii]+'/'+plname+'.in','r')
     lines = f.readlines()
     f.close()
-    pco2 = 0
+    #pco2 = 0
     #pdb.set_trace()
     for i in range(len(lines)):
       if lines[i].split() != []:
         if lines[i].split()[0] == 'dRotPeriod':
-          P = -1*np.float(lines[i].split()[1])
+          P = -1*float(lines[i].split()[1])
         if lines[i].split()[0] == 'dSemi':
-          semi = np.float(lines[i].split()[1])
+          semi = float(lines[i].split()[1])
           if semi < 0:
             semi *= -1
-        if lines[i].split()[0] == 'dpCO2':
-          pco2 = np.float(lines[i].split()[1])
+        #if lines[i].split()[0] == 'dpCO2':
+          #pco2 = float(lines[i].split()[1])
 
     try:
       longp = (body.ArgP + body.LongA + body.PrecA)*np.pi/180.0
     except:
       longp = body.PrecA*np.pi/180.0
 
-    esinv = ecc*np.sin(longp)*np.sin(obl*np.pi/180.)
-
+    #esinv = ecc*np.sin(longp)*np.sin(obl*np.pi/180.)
+    esinv = body.COPP
     lats = np.unique(body.Latitude)
     nlats = len(lats)
     ntimes = len(body.Time)
@@ -108,7 +113,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot temperature
     temp = np.reshape(body.TempLat,(ntimes,nlats))
     ax1 = plt.subplot(4,2,1)
-    pos = ax1.figbox.get_points()
+    #pos = ax1.figbox.get_points()
     c = plt.contourf(body.Time,lats,temp.T,cmap='plasma')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title(r'Surface Temp [$^{\circ}$C]', fontsize = 12)
@@ -124,7 +129,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot albedo
     alb = np.reshape(body.AlbedoLat,(ntimes,nlats))
     ax2 = plt.subplot(4,2,3)
-    pos = ax2.figbox.get_points()
+    #pos = ax2.figbox.get_points()
     c = plt.contourf(body.Time,lats,alb.T,cmap = 'Blues_r')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title('Albedo [TOA]', fontsize = 12)
@@ -141,7 +146,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot ice height
     ice = np.reshape(body.IceHeight,(ntimes,nlats))
     ax3 = plt.subplot(4,2,5)
-    pos = ax3.figbox.get_points()
+    #pos = ax3.figbox.get_points()
     c = plt.contourf(body.Time,lats,ice.T,cmap='Blues_r')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title('Ice sheet height [m]', fontsize = 12)
@@ -158,7 +163,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot bedrock
     brock = np.reshape(body.BedrockH,(ntimes,nlats))
     ax4 = plt.subplot(4,2,7)
-    pos = ax4.figbox.get_points()
+    #pos = ax4.figbox.get_points()
     c = plt.contourf(body.Time,lats,brock.T,cmap='Reds_r')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title('Bedrock height [m]', fontsize = 12)
@@ -175,7 +180,7 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
     # plot insolation
     insol = np.reshape(body.AnnInsol,(ntimes,nlats))
     ax5 = plt.subplot(4,2,2)
-    pos = ax5.figbox.get_points()
+    #pos = ax5.figbox.get_points()
     c = plt.contourf(body.Time,lats,insol.T,cmap='plasma')
     plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
     plt.title(r'Annual average instellation [W/m$^2$]', fontsize = 12)

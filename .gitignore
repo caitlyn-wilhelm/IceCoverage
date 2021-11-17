@@ -6,3 +6,15 @@ EvolveExample/tilted.log
 *.log
 *.Climate
 *.forward
+DynamicCases/CaseA/GDwarf/G_CaseA
+DynamicCases/CaseA/FDwarf/F_CaseA
+DynamicCases/CaseA/KDwarf/K_CaseA
+DynamicCases/CaseB/GDwarf/G_CaseB
+DynamicCases/CaseB/FDwarf/F_CaseB
+DynamicCases/CaseB/KDwarf/K_CaseB
+DynamicCases/CaseC/GDwarf/G_CaseC
+DynamicCases/CaseC/FDwarf/F_CaseC
+DynamicCases/CaseC/KDwarf/K_CaseC
+DynamicCases/CaseD/GDwarf/G_CaseD
+DynamicCases/CaseD/FDwarf/F_CaseD
+DynamicCases/CaseD/KDwarf/K_CaseD

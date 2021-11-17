@@ -5,10 +5,10 @@ This is where the raw data for the Static Cases are stored.It is divided byt spe
 To generate the data, you **MUST** have VPLanet installed and both vspace and multi-planet setup completed.
 To get started, run `vspace vspace.in` in the command line. This creates all the simulation folders to run.
 
-Now you are ready to run VPLanet! Since there are 10,000 simulations per spectral type per case, it is *recommended* to use multiplanet, which can be done by typing the following:
+Now you are ready to run VPLanet! Since there are 10,000 simulations per spectral type per case, it is _recommended_ to use multiplanet, which can be done by typing the following:
 
 ```
 multiplanet vspace.in <number of cores>
 ```
 
-After each simulation has completed, type `python makeplot.py pdf | png` to generate the figure!
+After each simulation has completed, type `bigplanet bpl.in -a` to generate a bigplanet archive file, which will be used for plotting purposes. Once that's done, type `python makeplot.py pdf | png` to generate the figure!

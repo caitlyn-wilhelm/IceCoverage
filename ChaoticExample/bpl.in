@@ -1,0 +1,13 @@
+sDestFolder ../DynamicCases/CaseA/FDwarf/F_CaseA
+sArchiveFile F_CaseA.bpla
+sOutputFile ChaoticExample.bpf
+sSimName testrand_4407
+
+saBodyFiles earth.in sun.in
+sPrimaryFile vpl.in
+
+saKeyInclude earth:COPP:forward earth:Eccentricity:forward earth:Obliquity:forward earth:Time:forward $
+             earth:Latitude:climate earth:TempLat:climate earth:AnnInsol:climate $
+             earth:AlbedoLat:climate earth:IceHeight:climate earth:BedrockH:climate
+
+

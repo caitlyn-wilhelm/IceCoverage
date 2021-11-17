@@ -15,6 +15,7 @@ import matplotlib.lines as mlines
 dest = ['/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_Monte_Carlo_large/',
         '/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_Monte_Carlo_Large_2/',
         '/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_Monte_Carlo_large/']
+#dest = ['../DynamicCases/CaseA/KDwarf/','../DynamicCases/CaseA/GDwarf/','../DynamicCases/CaseA/FDwarf/']
 star = ['K Dwarf','G Dwarf','F Dwarf']
 num = 10000
 
