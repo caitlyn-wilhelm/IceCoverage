@@ -18,3 +18,5 @@ DynamicCases/CaseC/KDwarf/K_CaseC
 DynamicCases/CaseD/GDwarf/G_CaseD
 DynamicCases/CaseD/FDwarf/F_CaseD
 DynamicCases/CaseD/KDwarf/K_CaseD
+*.bpa
+*.bpf

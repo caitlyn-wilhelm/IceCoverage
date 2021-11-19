@@ -1,0 +1,16 @@
+sDestFolder F_CaseA
+sBigplanetFile F_CaseA.bpa
+sOutputFile Test.bpf
+
+
+saBodyFiles earth.in sun.in
+sPrimaryFile vpl.in
+
+saKeyInclude earth:Obliquity:forward earth:Time:forward $
+	     earth:Instellation:final earth:IceBeltLand:final earth:IceBeltSea:final $
+             earth:IceCapNorthLand:final earth:IceCapNorthSea:final earth:IceCapSouthLand:final earth:IceCapSouthSea:final $
+             earth:IceFree:final earth:SnowballLand:final earth:SnowballSea:final $
+             earth:Latitude:climate earth:IceHeight:climate
+
+
+

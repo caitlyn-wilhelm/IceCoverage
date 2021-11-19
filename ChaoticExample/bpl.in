@@ -1,5 +1,5 @@
 sDestFolder ../DynamicCases/CaseA/FDwarf/F_CaseA
-sArchiveFile F_CaseA.bpla
+sArchiveFile F_CaseA.bpa
 sOutputFile ChaoticExample.bpf
 sSimName testrand_4407
 

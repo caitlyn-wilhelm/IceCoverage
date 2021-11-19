@@ -7,7 +7,7 @@ import subprocess
 import re
 import sys
 import vplanet
-from bigplanet import bp_extract as bp
+import bigplanet as bp
 import pathlib
 from itertools import chain
 

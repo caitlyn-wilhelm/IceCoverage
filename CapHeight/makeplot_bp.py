@@ -10,7 +10,7 @@ import sys
 import scipy.ndimage
 from matplotlib.pyplot import figure
 import matplotlib.lines as mlines
-import bigplanet as bp
+from bigplanet import bp_extract as bp
 import pathlib
 from itertools import chain
 
@@ -52,11 +52,64 @@ for x in range(len(dest)):
     
 
     if (
-        icebeltL == 1 and icebeltS == 0 and southCapS == 0 and
-        southCapL == 0 and northCapS == 0 and northCapL == 0 and
-        snowballL == 0 and snowballS == 0
+            #North Land, South Land
+            northCapL == 1 and northCapS == 0 and
+            southCapL == 1 and southCapS == 0 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Sea, South Land
+            northCapL == 0 and northCapS == 1 and
+            southCapL == 1 and southCapS == 0 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Both, South Land
+            northCapL == 1 and northCapS == 1 and
+            southCapL == 1 and southCapS == 0 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Land, South Sea
+            northCapL == 1 and northCapS == 0 and
+            southCapL == 0 and southCapS == 1 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Sea, South Sea
+            northCapL == 0 and northCapS == 1 and
+            southCapL == 0 and southCapS == 1 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Both, South Sea
+            northCapL == 1 and northCapS == 1 and
+            southCapL == 0 and southCapS == 1 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Land, South Both
+            northCapL == 1 and northCapS == 0 and
+            southCapL == 1 and southCapS == 1 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Sea, South Both
+            northCapL == 0 and northCapS == 1 and
+            southCapL == 1 and southCapS == 1 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0 or
+
+            #North Both, South Both
+            northCapL == 1 and northCapS == 1 and
+            southCapL == 1 and southCapS == 1 and
+            icebeltL == 0  and icebeltS == 0  and
+            snowballL == 0 and snowballS == 0
+
     ):
-        if icecount <= 70:
+        
+        
+        if icecount <= 100:
             lats = bp.ExtractUniqueValues(file,'earth:Latitude:climate')
             times = bp.ExtractColumn(file,'earth:Time:forward')
             ice = bp.ExtractColumn(file,'earth:IceHeight:climate')
@@ -104,9 +157,9 @@ for x in range(len(dest)):
 plt.tight_layout()
 #os.chdir('/home/caitlyn/IceSheet/BeltHeight')
 if (sys.argv[1] == 'pdf'):
-    plt.savefig('BeltHeight' + '.pdf')
+    plt.savefig('CapHeight' + '.pdf')
 if (sys.argv[1] == 'png'):
-    plt.savefig('BeltHeight' + '.png')
+    plt.savefig('CapHeight' + '.png')
 
 plt.show()
 plt.close()

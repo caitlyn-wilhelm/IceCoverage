@@ -7,7 +7,7 @@ import subprocess
 import re
 import sys
 import vplanet
-from bigplanet import bp_extract as bp
+import bigplanet as bp
 import pathlib
 from itertools import chain
 
@@ -49,29 +49,33 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   file = bp.BPLFile(path / "ChaoticExample.bpf")
 
 
-  ecc = bp.ExtractColumn(file,'earth:Eccentricity:forward')
-  obl = bp.ExtractColumn(file,'earth:Obliquity:forward')
+  ecc = bp.ExtractColumn(file,'earth:Eccentricity:forward')[0]
+  obl = bp.ExtractColumn(file,'earth:Obliquity:forward')[0]
   
 
-  copp = bp.ExtractColumn(file,'earth:COPP:forward')
+  copp = bp.ExtractColumn(file,'earth:COPP:forward')[0]
   lats = bp.ExtractUniqueValues(file,'earth:Latitude:climate')
   
-  times = bp.ExtractColumn(file,'earth:Time:forward')
-  temp = bp.ExtractColumn(file,'earth:TempLat:climate')
-  alb = bp.ExtractColumn(file,'earth:AlbedoLat:climate')
-  ice = bp.ExtractColumn(file,'earth:IceHeight:climate')
-  insol = bp.ExtractColumn(file,'earth:AnnInsol:climate')
-  brock = bp.ExtractColumn(file,'earth:BedrockH:climate')
+  times = bp.ExtractColumn(file,'earth:Time:forward')[0]
+  temp = bp.ExtractColumn(file,'earth:TempLat:climate')[0]
+  alb = bp.ExtractColumn(file,'earth:AlbedoLat:climate')[0]
+  ice = bp.ExtractColumn(file,'earth:IceHeight:climate')[0]
+  insol = bp.ExtractColumn(file,'earth:AnnInsol:climate')[0]
+  brock = bp.ExtractColumn(file,'earth:BedrockH:climate')[0]
   
-  ecc = list(chain.from_iterable(ecc))
-  obl = list(chain.from_iterable(obl))
-  times = list(chain.from_iterable(times))
-  copp = list(chain.from_iterable(copp))
-  temp = list(chain.from_iterable(temp))
-  alb = list(chain.from_iterable(alb))
-  ice = list(chain.from_iterable(ice))
-  insol = list(chain.from_iterable(insol))
-  brock = list(chain.from_iterable(brock))
+
+  print(times)
+  
+  
+  #ecc = list(chain.from_iterable(ecc))
+  #obl = list(chain.from_iterable(obl))
+  #times = list(chain.from_iterable(times))
+  #copp = list(chain.from_iterable(copp))
+  #temp = list(chain.from_iterable(temp))
+  #alb = list(chain.from_iterable(alb))
+  #ice = list(chain.from_iterable(ice))
+  #insol = list(chain.from_iterable(insol))
+  #brock = list(chain.from_iterable(brock))
   
 
   nlats = len(lats)

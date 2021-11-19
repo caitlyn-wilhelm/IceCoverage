@@ -1,5 +1,5 @@
-sDestFolder ../DynamicCases/CaseA/GDwarf/G_CaseA
-sBigplanetFile GDwarf_exp10000.bpa
+sDestFolder K_CaseA
+sBigplanetFile K_CaseA.bpa
 sOutputFile Test.bpf
 
 
