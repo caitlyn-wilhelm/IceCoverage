@@ -10,11 +10,13 @@ import scipy.ndimage
 from matplotlib.pyplot import figure
 import matplotlib.lines as mlines
 import vplanet
+import bigplanet as bp
+
 
 num = 100
-dest = ["/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_obl_stat_large/K_exp10000/",
-"/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_obl_stat_large/Sol_exp10000/",
-"/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_obl_stat_large/F_exp10000/",
+dest = ["../StaticCases/KDwarf/WarmStart/",
+"../StaticCases/GDwarf/WarmStart/",
+"../StaticCases/Fwarf/WarmStart/",
 ]
 
 colorz = [vpl.colors.red,vpl.colors.orange,vpl.colors.pale_blue]
@@ -24,161 +26,129 @@ plt.figure(figsize=(9,6.5))
 
 for i,value in enumerate(dest):
 
-    folders = sorted([f.path for f in os.scandir(os.path.abspath(value)) if f.is_dir()])
-    #print(folders)
-    num = int(num)
+    HDF5_File = h5py.File('Test.bpf', 'r')
 
-    print(len(folders))
+    earth_icebelt_L = bp.ExtractColumn(HDF5_File,'earth:IceBeltLand:final')
+    earth_icebelt_S = bp.ExtractColumn(HDF5_File,'earth:IceBeltSea:final')
+    earth_northcap_L = bp.ExtractColumn(HDF5_File,'earth:IceCapNorthLand:final')
+    earth_northcap_S = bp.ExtractColumn(HDF5_File,'earth:IceCapNorthSea:final')
+    earth_southcap_L = bp.ExtractColumn(HDF5_File,'earth:IceCapSouthLand:final')
+    earth_southcap_S = bp.ExtractColumn(HDF5_File,'earth:IceCapSouthSea:final')
 
-    lum0 = np.zeros(len(folders))
-    obliq0 = np.zeros(len(folders))
-    semi0 = np.zeros(len(folders))
-    inst = np.zeros(len(folders))
+    earth_icefree = bp.ExtractColumn(HDF5_File,'earth:IceFree:final')
+    earth_snowball_L = bp.ExtractColumn(HDF5_File,'earth:SnowballLand:final')
+    earth_snowball_S = bp.ExtractColumn(HDF5_File,'earth:SnowballSea:final')
 
-    snowballL = np.zeros(len(folders))
-    snowballS = np.zeros(len(folders))
-    snowball = np.zeros(len(folders))
 
-    northCapL = np.zeros(len(folders))
-    northCapS = np.zeros(len(folders))
-    southCapL = np.zeros(len(folders))
-    southCapS = np.zeros(len(folders))
+    #gets the x and y axis data
+    earth_Obliq_uniq = bp.ExtractUniqueValues(HDF5_File,'earth:Obliquity:initial')
+    earth_intstel_uniq = bp.ExtractUniqueValues(HDF5_File,'earth:Instellation:final')
 
-    icebeltL = np.zeros(len(folders))
-    icebeltS = np.zeros(len(folders))
-    IceBelt = np.zeros(len(folders))
+    #changing units of axis
+    earth_intstel_uniq =  np.reshape(earth_intstel_uniq,(earth_intstel_uniq.shape)) / 1350
+    earth_Obliq_uniq = np.reshape(earth_Obliq_uniq,(earth_Obliq_uniq.shape)) * 180 / np.pi
 
-    iceFree = np.zeros(len(folders))
-    tGlobal = np.zeros(len(folders))
-    PolarCaps = np.zeros(len(folders))
+    # #creates a new numpy array that is for Polar Caps
+    PolarCaps = np.zeros(len(earth_northcap_L))
+    Snowball = np.zeros(len(earth_northcap_L))
+    IceBelt = np.zeros(len(earth_northcap_L))
 
-    for j,value in enumerate(folders,start = 0):
-        print(value)
-        out = vplanet.get_output(value, units = False)
-        lum0[j] = getattr(out.log.initial, 'sun').Luminosity
-        obliq0[j] = getattr(out.log.initial, 'earth').Obliquity
-        semi0[j] = getattr(out.log.initial, 'earth').SemiMajorAxis
-        inst[j] = getattr(out.log.final, 'earth').Instellation
 
-        snowballL[j] = getattr(out.log.final, 'earth').SnowballLand
-        snowballS[j] = getattr(out.log.final, 'earth').SnowballSea
+    for j in range(len(PolarCaps)):
 
-        northCapL[j] = getattr(out.log.final, 'earth').IceCapNorthLand
-        northCapS[j] = getattr(out.log.final, 'earth').IceCapNorthSea
+        if earth_snowball_L[j] == 1 or earth_snowball_S[j] == 1:
+            earth_icebelt_L[j] = 0
+            earth_icebelt_S[j] = 0
+            earth_northcap_L[j] = 0
+            earth_northcap_S[j] = 0
+            earth_southcap_L[j] = 0
+            earth_southcap_S[j] = 0
+            earth_icefree[j] = 0
+            Snowball[j] = 1
 
-        southCapL[j] = getattr(out.log.final, 'earth').IceCapSouthLand
-        southCapS[j] = getattr(out.log.final, 'earth').IceCapSouthSea
-
-        icebeltL[j] = getattr(out.log.final, 'earth').IceBeltLand
-        icebeltS[j] = getattr(out.log.final, 'earth').IceBeltSea
-
-        iceFree[j] = getattr(out.log.final, 'earth').IceFree
-
-        if snowballL[j] == 1 or snowballS[j] == 1:
-            icebeltL[j] = 0
-            icebeltS[j] = 0
-            northCapL[j] = 0
-            northCapS[j] = 0
-            southCapL[j] = 0
-            southCapS[j] = 0
-            iceFree[j] = 0
-            snowball[j] = 1
 
         if (
-            #North Land, South Land
-            northCapL[j] == 1 and northCapS[j] == 0 and
-            southCapL[j] == 1 and southCapS[j] == 0 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Land, South Land
+                earth_northcap_L[j] == 1 and earth_northcap_S[j] == 0 and
+                earth_southcap_L[j] == 1 and earth_southcap_S[j] == 0 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Sea, South Land
-            northCapL[j] == 0 and northCapS[j] == 1 and
-            southCapL[j] == 1 and southCapS[j] == 0 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Sea, South Land
+                earth_northcap_L[j] == 0 and earth_northcap_S[j] == 1 and
+                earth_southcap_L[j] == 1 and earth_southcap_S[j] == 0 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Both, South Land
-            northCapL[j] == 1 and northCapS[j] == 1 and
-            southCapL[j] == 1 and southCapS[j] == 0 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Both, South Land
+                earth_northcap_L[j] == 1 and earth_northcap_S[j] == 1 and
+                earth_southcap_L[j] == 1 and earth_southcap_S[j] == 0 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Land, South Sea
-            northCapL[j] == 1 and northCapS[j] == 0 and
-            southCapL[j] == 0 and southCapS[j] == 1 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Land, South Sea
+                earth_northcap_L[j] == 1 and earth_northcap_S[j] == 0 and
+                earth_southcap_L[j] == 0 and earth_southcap_S[j] == 1 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Sea, South Sea
-            northCapL[j] == 0 and northCapS[j] == 1 and
-            southCapL[j] == 0 and southCapS[j] == 1 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Sea, South Sea
+                earth_northcap_L[j] == 0 and earth_northcap_S[j] == 1 and
+                earth_southcap_L[j] == 0 and earth_southcap_S[j] == 1 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Both, South Sea
-            northCapL[j] == 1 and northCapS[j] == 1 and
-            southCapL[j] == 0 and southCapS[j] == 1 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Both, South Sea
+                earth_northcap_L[j] == 1 and earth_northcap_S[j] == 1 and
+                earth_southcap_L[j] == 0 and earth_southcap_S[j] == 1 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Land, South Both
-            northCapL[j] == 1 and northCapS[j] == 0 and
-            southCapL[j] == 1 and southCapS[j] == 1 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Land, South Both
+                earth_northcap_L[j] == 1 and earth_northcap_S[j] == 0 and
+                earth_southcap_L[j] == 1 and earth_southcap_S[j] == 1 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Sea, South Both
-            northCapL[j] == 0 and northCapS[j] == 1 and
-            southCapL[j] == 1 and southCapS[j] == 1 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+                #North Sea, South Both
+                earth_northcap_L[j] == 0 and earth_northcap_S[j] == 1 and
+                earth_southcap_L[j] == 1 and earth_southcap_S[j] == 1 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
-            #North Both, South Both
-            northCapL[j] == 1 and northCapS[j] == 1 and
-            southCapL[j] == 1 and southCapS[j] == 1 and
-            icebeltL[j] == 0  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0
-        ):
-            PolarCaps[j] = 1
-
+                #North Both, South Both
+                earth_northcap_L[j] == 1 and earth_northcap_S[j] == 1 and
+                earth_southcap_L[j] == 1 and earth_southcap_S[j] == 1 and
+                earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 0  and
+                earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0
+            
+            ):
+                    PolarCaps[j] = 1
+                    
+                    
         if (
             #Land
-            northCapL[j] == 0 and northCapS[j] == 0 and
-            southCapL[j] == 0 and southCapS[j] == 0 and
-            icebeltL[j] == 1  and icebeltS[j] == 0  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+            earth_northcap_L[j] == 0 and earth_northcap_S[j] == 0 and
+            earth_southcap_L[j] == 0 and earth_southcap_S[j] == 0 and
+            earth_icebelt_L[j] == 1  and earth_icebelt_S[j] == 0  and
+            earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
             #Sea
-            northCapL[j] == 0 and northCapS[j] == 0 and
-            southCapL[j] == 0 and southCapS[j] == 0 and
-            icebeltL[j] == 0  and icebeltS[j] == 1  and
-            snowballL[j] == 0 and snowballS[j] == 0 or
+            earth_northcap_L[j] == 0 and earth_northcap_S[j] == 0 and
+            earth_southcap_L[j] == 0 and earth_southcap_S[j] == 0 and
+            earth_icebelt_L[j] == 0  and earth_icebelt_S[j] == 1  and
+            earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0 or
 
             #Both
-            northCapL[j] == 0 and northCapS[j] == 0 and
-            southCapL[j] == 0 and southCapS[j] == 0 and
-            icebeltL[j] == 1  and icebeltS[j] == 1 and
-            snowballL[j] == 0 and snowballS[j] == 0
+            earth_northcap_L[j] == 0 and earth_northcap_S[j] == 0 and
+            earth_southcap_L[j] == 0 and earth_southcap_S[j] == 0 and
+            earth_icebelt_L[j] == 1  and earth_icebelt_S[j] == 1 and
+            earth_snowball_L[j] == 0 and earth_snowball_S[j] == 0
         ):
             IceBelt[j] = 1
 
-    obliq0 = np.reshape(obliq0, (num, num)) * 180 / np.pi
-    semi0 = np.reshape(semi0, (num, num)) / 1.49598e11
-    inst = np.reshape(inst, (num, num)) / 1350
-    snowball = np.reshape(snowball, (num, num))
-    northCapL = np.reshape(northCapL, (num, num))
-    northCapS = np.reshape(northCapS, (num, num))
-    southCapL = np.reshape(southCapL, (num, num))
-    southCapS = np.reshape(southCapS, (num, num))
-    IceBelt = np.reshape(IceBelt, (num, num))
-    icebeltL = np.reshape(icebeltL, (num, num))
-    icebeltS = np.reshape(icebeltS, (num, num))
-    iceFree = np.reshape(iceFree, (num, num))
-    tGlobal = np.reshape(tGlobal, (num, num))
-    PolarCaps = np.reshape(PolarCaps, (num, num))
-
-    pc = plt.contour(obliq0,inst,PolarCaps, [0.5, 1], colors = colorz[i],linewidths=3)
-    icF = plt.contour(obliq0,inst,IceBelt, [0.5, 1], colors = colorz[i], linewidths=3)
+    pc = plt.contour(earth_Obliq_uniq,earth_intstel_uniq,PolarCaps, [0.5, 1], colors = colorz[i],linewidths=3)
+    icF = plt.contour(earth_Obliq_uniq,earth_intstel_uniq,IceBelt, [0.5, 1], colors = colorz[i], linewidths=3)
 
 
 plt.plot([37.8,45.0],[0.9674,0.9414], color = vpl.colors.red, linewidth = 3, dashes = [6,2])

@@ -17,9 +17,27 @@ GStar/Ecc02
 FStar/WarmStart
 FStar/Ecc01
 
-To run each of the parameter sweeps, cd into the directory and type `vspace vspace.in` This generates the 10,000 test cases that generates the figure. After that run multiplanet to run the simulations by typing `multiplanet vspace.in`. Once each of the simulations is completed (this will take some time), come back to this directory and generate the plot.
+To run each of the parameter sweeps, cd into the directory and type the following:
 
-To generate the plot, type the following code:
+```
+vspace vspace.in
+```
+
+This generates the 10,000 test cases that generates the figure. After that run multiplanet to run the simulations by typing the following:
+
+```
+multiplanet vspace.in.
+```
+
+Once each of the simulations is completed (this will take some time), run bigplanet in each of the directories with the following:
+
+```
+bigplanet bpl.in -a
+```
+
+This generates a bigplanet archive file which is where all the data is stored from the simulations.
+Finally, once that is done, come back to this directory and generate the plot with the following:
+
 ```
 python makeplot.py <pdf | png>
 ```

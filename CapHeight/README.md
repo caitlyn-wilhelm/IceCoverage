@@ -8,7 +8,7 @@ This plot uses bigplanet's filtered file feature. To generate the bigplanet filt
 bigplanet bpl.in
 ```
 
-That should generate a _Test.bpf_ file. Once that has completed, to generate the plot type the following code:
+That should generate a _Test.bpf_ file. Once that has completed, to generate the plot type the following code in this directory:
 
 ```
 python makeplot.py <pdf | png>

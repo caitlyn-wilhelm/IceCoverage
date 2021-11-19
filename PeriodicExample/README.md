@@ -21,4 +21,4 @@ python makeplot.py <pdf | png>
 
 This should generate the following plot:
 
-![PeriodicCase](PeriodicExample.png)
+![PeriodicExample](PeriodicExample.png)
