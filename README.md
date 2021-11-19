@@ -8,7 +8,7 @@ It is divided into two different types of simulations:
 
 For the Static Cases there are a folder for each spectral type, and they are divided up by _starting eccentricity value_. So if you wanted to look for _Static K star simulation with eccentricity of 0.2_ that would be **StaticCases/KDwarf/Ecc02**. For the Dynamic Cases, it divided by Case A-E which are shown in the table on the page for Dynamic Cases.
 
-In each of those folders is the plot generated from the data, a list file with the data, and the [vspace]https://github.com/VirtualPlanetaryLaboratory/vspace) input file if you would like to examine the raw data by running the simulation on your own machine with [multiplanet]https://github.com/VirtualPlanetaryLaboratory/multiplanet).
+In each of those folders is the plot generated from the data, a list file with the data, and the [vspace](https://github.com/VirtualPlanetaryLaboratory/vspace) input file if you would like to examine the raw data by running the simulation on your own machine with [multiplanet](https://github.com/VirtualPlanetaryLaboratory/multiplanet).
 
 All of the plots use [bigplanet](https://github.com/VirtualPlanetaryLaboratory/bigplanet), a data analysis suite I developed to aid in the large amount of data generated from the simulations.
 
