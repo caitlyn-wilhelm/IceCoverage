@@ -1,4 +1,5 @@
-# Plots and Figures for 2021 Wilhelm et. al Publication
+Plots and Figures for 
+# The Ice Coverage of Earth-like Planets Orbiting FGK Stars
 
 Here are the plots and figures used in the 2021 Wilhelm et. al Publication on The Ice Coverage of Earth-like Planets Orbiting FGK Stars. We used [VPLanet](https://github.com/VirtualPlanetaryLaboratory/vplanet) version 2.1 to examine the formation of polar and equitorial ice and constucted contour plots to look at the range in which polar caps and ice belts are present. We looked at three different spectral classes of stars: K, G and F stars.
 It is divided into two different types of simulations:
