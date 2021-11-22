@@ -2,7 +2,7 @@
 
 This plot shows the range and average ice heights of ice belts as a function of latitude for stars orbiting F (top), G (middle) and K (bottom) dwarf stars. Light grey curves show 100 randomly selected individual simulations, while black shows the average of all simulations that concluded with an ice belts. Although the averages are all symmetric about the equator, some individual ice belts are significantly displaced.
 
-#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive._
+#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
 This plot uses a bigplanet filtered file. To generate this file, type the following in each of spectral type folders in the _DynamicCases/CaseA/_ folder:
 
@@ -15,7 +15,7 @@ That will generate a file called _Test.bpf_. Once that has completed,  generate 
 ```
 python makeplot.py <pdf | png>
 ```
-where the two arguments after makeplot.py set the output to either a pdf or png.This should generate the plot:
+where the two arguments after makeplot.py set the output to either a pdf or png. This should generate the plot:
 
 ![BeltHeight](BeltHeight.png)
 

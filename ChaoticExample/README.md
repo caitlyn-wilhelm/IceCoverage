@@ -2,7 +2,7 @@
 
 This plot shows a simulation in which a planet orbiting an F dwarf star evolves chaotically, with epochs of both equitorial and polar ice. 
 
-#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive._
+#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
 Below is a table of inital values for the case:
 
@@ -34,4 +34,4 @@ where the two arguments after makeplot.py set the output to either a pdf or png.
 
 _Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock depression (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
 
-#### _Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, your result could be very different. Qualitatively similar outcomes should be present in the full [DynamicCases](../DynamicCases) data._
+#### _Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, producing the same random numbers, your result could be very different. Qualitatively similar outcomes should be present in the full [DynamicCases](../DynamicCases) data._
