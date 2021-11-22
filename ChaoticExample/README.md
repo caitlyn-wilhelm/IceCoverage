@@ -1,6 +1,10 @@
 # Chaotic Example
 
-This plot shows a simulation in which a planet orbiting an F dwarf star evolves chaotically, with epochs of both equitorial and polar ice. _Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock depression (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
+This plot shows a simulation in which a planet orbiting an F dwarf star evolves chaotically, with epochs of both equitorial and polar ice. 
+
+.. note:: 
+
+    These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive.
 
 Below is a table of inital values for the case:
 
@@ -14,13 +18,13 @@ Below is a table of inital values for the case:
 | Eccentricity Amplitude | 0.650         |
 | Eccentricity Period    | 65292         |
 
-This figure uses bigplanet's single simulation extraction process and assumes the simulations in the [DynamicCases](../DynamicCases) have already been completed. The first step is to extract the desired simulation from the _archive file or raw data XXX_ by running bigplanet: _XXX bpl.in is not in the repo!_
+The first step is to extract the desired simulation from the _archive file or raw data XXX_ by running bigplanet: 
 
 ```
 bigplanet bpl.in
 ```
 
-This will generate a bpf file called _ChaoticExample.bpf_ that contains the data needed for this figure. To create the figure, execute the following command in the command line:
+This will generate a bpf file called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
 
 ```
 python makeplot.py <pdf | png>
@@ -30,6 +34,8 @@ where the two arguments after makeplot.py set the output to either a pdf or png.
 
 ![ChaoticExample](ChaoticExample.png)
 
-..note::
+_Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock depression (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
+
+.. note::
 
     Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, your result could be very different. Qualitatively similar outcomes should be present in the full [DynamicCases](../DynamicCases) data.
