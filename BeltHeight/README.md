@@ -13,6 +13,10 @@ That will generate a file called _Test.bpf_. Once that has completed,  generate 
 ```
 python makeplot.py <pdf | png>
 ```
+where the two arguments after makeplot.py set the output to either a pdf or png.This should generate the plot:
 
-This should generate the plot:
 ![BeltHeight](BeltHeight.png)
+
+..note::
+
+    The exact values in your reproduction may vary slightly (1%) due to differences in random number generation.

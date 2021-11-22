@@ -29,3 +29,7 @@ python makeplot.py <pdf | png>
 where the two arguments after makeplot.py set the output to either a pdf or png. The resultant plot should should look like this:
 
 ![ChaoticExample](ChaoticExample.png)
+
+..note::
+
+    Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, your result could be very different. Qualitatively similar outcomes should be present in the full [DynamicCases](../DynamicCases) data.
