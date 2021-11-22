@@ -1,33 +1,20 @@
 # Dynamic Cases (Monte Carlo simulations)
 
-This is where the raw data for the Dynamic Cases are stored. In each Case folder (labeled A-E) there is another folder for each of the spectral types (K Dwarf,G Dwarf, and F Dwarf). In each of the spectral case folder is the source files as well as the `vspace.in` file which is needed for running VPLanet. So if you wanted to run Case A G Star it would be in _CaseA/GDwarf_.
+This subdirectory conatins the files to generate the raw data for the Dynamic Cases. In each Case folder (labeled A-E) there is another folder for each of the spectral types (K Dwarf, G Dwarf, and F Dwarf) that contain the files required perform the parameters sweeps with VPLanet, vspace and multiplanet.  the `vspace.in` file which is needed for running VPLanet. The details of each parameter sweep can be found in the publication.
 
-Each Case is explained in depth below:
-
-In Case A, our baseline model, we assume all albedos have the values shown in Table 1 and the amplitudes and periods of the eccentrisity and obliquity oscillations are chosen to represent typical values for the terrestrial planets in our Solar System.
-
-In Case B, we allowed the albedos to take values within &pm;0.05 the values (with a uniform distribution) from Table 1, _ie_ the general trend in albedo and effective global temperature is preserved, but some variations in ice albedo are permitted. The external forcing oscillations are the same as in Case A.
-
-In Case C, the ice albedos for all planets, regardless of host star spectral type, are allowed to vary uniformly between 0.55 and 0.75 to further evaluate variable albedo, while the external forcing periods are shifted to larger values.
-
-In Case D, the albedos are the same as Case C, but the external forcing parameters have normally distributed periods.
-
-In Case E, the values are the same as Case A but we changed the rotation rate to vary uniformly between 0.5 to 5 days, which changes the evolution of precession angle.
-
-To generate the data, you **MUST** have VPLanet installed and vspace, multi-planet and bigplanet setup completed.
-To get started, run vspace in the command line while in the folder for that particular spectral star. This creates all the simulation folders to run:
+To generate the data, in each Case/SpectralType subdirectory, run the following commands:
 
 ```
  vspace vspace.in
 ```
 
-Then, run the rand_dist.py file.This script changes the values of the eccentricity amplitude to be the proper values:
+This creates 10,000 subdirectories with initial conditions as prescribed in vspace.in. However, in some cases vspace will pick an initial eccentricity values and eccentricity amplitudes that will result in it dropping below 0 or growing larger than 1! To fix this issue, run the rand_dist.py script to prevent unphysical values:
 
 ```
 python rand_dist.py vspace.in
 ```
 
-Now you are ready to run VPLanet! Since there are 10,000 simulations per spectral type per case, it is _recommended_ to use multi-planet, which can be done by typing the following:
+Now you are ready to run VPLanet! Since there are 10,000 simulations per spectral type per case, it is _recommended_ to use multi-planet, which is provided by the VPLanet team to efficiently perform the simulations:
 
 ```
 multi-planet vspace.in <number of cores>
@@ -35,10 +22,11 @@ multi-planet vspace.in <number of cores>
 
 Because of the seed in the `vspace.in` file, you should generate identical data to that in Wilhelm et al. 2021.
 
-Once multi-planet has finished, run bigplanet to grab the data needed to plot the figures later. Run the following command in the command line:
+This repo also relies on bigplanet for data storage and analysis. Because we generate so much data, plotting and analyzing the data from raw ASCII files spread across 10,000 subdirectories can be extremely tedious and time-consuming. bigplanet creates an single HDF5 file that contains the raw data and can be interrogated in <1/10th the time of directories/files. In this case, we run bigplanet to create a _bigplanet archive_, a master file that contains all the raw data. Once the archive file is created, you can safely delete the directories and save about 50% of your disk space. Note that bigplanet always performs an md5 checksum to ensure data integrity. To generate each bigplanet archive, execute the following command in the command line:
 
 ```
 bigplanet bpl.in
 ```
+This will create files calles X_CaseY.bpa, where X = F,G,K and Y = A,B,C,D,E, i.e. a unique file name for each spectral type-case combination. The other subdirectories in this repository assume that these files exist.
 
-This generates a bpf file which is a filtered version of all the data needed for making the various figures.
+_XXX Missing many bpl.in files! and some vspace.in files!_
