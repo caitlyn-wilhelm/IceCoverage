@@ -2,7 +2,7 @@
 
 This plot shows the outcomes of our 5 [Dynamic Cases](../DynamicCases), grouped by host star spectral type. See the paper for more information on the differencs between these cases. Despite wide ranges of assumptions, the outcomes are relatively constant, suggesting that variations in albedo, rotational cycle, or orbital cycle do not strongly influence the climate states.
 
-_These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive._
+#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive._
 
 To categorize the planets, type the following:
 
@@ -23,6 +23,4 @@ This should generate the plot:
 
 The numbers in the  file should match that of the numbers in the figure
 
-.. note::
-
-    The exact values in your reproduction may vary slightly (1%) due to differences in random number generation.
+#### _The exact values in your reproduction may vary slightly (1%) due to differences in random number generation._
