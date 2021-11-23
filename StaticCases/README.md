@@ -14,7 +14,7 @@ Now you are ready to run ``VPLanet``! Since there are 10,000 simulations per spe
 multiplanet vspace.in <number of cores>
 ```
 
-After each simulation has completed, type the following to generate a ["big planet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) bigplanet archive file, which will be used for plotting purposes:
+After each simulation has completed, type the following to generate a ["bigplanet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) bigplanet archive file, which will be used for plotting purposes:
 
 ```
 bigplanet bpl.in -a

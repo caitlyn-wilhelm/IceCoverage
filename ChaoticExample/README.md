@@ -22,7 +22,7 @@ The first step is to extract the desired simulation's data from the _archive fil
 bigplanet bpl.in
 ```
 
-This command generates a ["big planet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
+This command generates a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
 
 ```
 python makeplot.py <pdf | png>
@@ -34,4 +34,4 @@ where the two arguments after makeplot.py set the output to either a pdf or png.
 
 _Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock depression (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
 
-#### _Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, producing the same random numbers, your result could be very different. Qualitatively similar outcomes should be present in the full [DynamicCases](../DynamicCases) data._
+#### _Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, producing the same random numbers, your result could be very different. Qualitatively similar outcomes should be present in the [DynamicCases](../DynamicCases) data set._

@@ -1,6 +1,6 @@
 # Dynamic Cases 
 
-This subdirectory conatins the files to generate the raw data for the "Dynamic Cases," as described in the paper. In each Case folder (labeled A-E) there is another folder for each of the spectral types (K Dwarf, G Dwarf, and F Dwarf) that contains the files required to perform the parameter sweeps with ``VPLanet``, ``vspace`` and ``multiplanet``, as well as compress the data into a ["big planet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) with ``bigplanet`` for later analysis. The details of each parameter sweep can be found in Table 2 of the publication.
+This subdirectory conatins the files to generate the raw data for the "Dynamic Cases," as described in the paper. In each Case folder (labeled A-E) there is another folder for each of the spectral types (K Dwarf, G Dwarf, and F Dwarf) that contains the files required to perform the parameter sweeps with ``VPLanet``, ``vspace`` and ``multiplanet``, as well as compress the data into a ["bigplanet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) with ``bigplanet`` for later analysis. The details of each parameter sweep can be found in Table 2 of the publication.
 
 To generate the data, in each Case/SpectralType subdirectory, run the following commands:
 

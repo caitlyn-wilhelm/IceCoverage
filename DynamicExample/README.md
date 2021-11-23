@@ -21,7 +21,7 @@ The first step is to extract the desired simulation from the _archive file or ra
 bigplanet bpl.in
 ```
 
-This will generate a ["big planet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_
+This will generate a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_
 
 Now that we have all the data, run the following code in the command line:
 
