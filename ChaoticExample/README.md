@@ -16,13 +16,13 @@ Below is a table of inital values for the case:
 | Eccentricity Amplitude | 0.650         |
 | Eccentricity Period    | 65292         |
 
-The first step is to extract the desired simulation's data from the _archive file or raw data XXX_ by running bigplanet: 
+The first step is to extract the desired simulation's data from the _archive file or raw data XXX_ by running ``bigplanet``: 
 
 ```
 bigplanet bpl.in
 ```
 
-This command generates a ["big planet file"](https://virtualplanetarylaboratory.github.io/bigplanet/install.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
+This command generates a ["big planet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
 
 ```
 python makeplot.py <pdf | png>

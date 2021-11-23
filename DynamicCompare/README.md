@@ -11,7 +11,7 @@ python climate_type.py [FolderName]
 
 ```
 
-which generates a file called climateType.log that tabulates the different categories of ice state. To generate the figure, type the following code:
+which generates a file called _climateType.log_ that tabulates the different categories of ice state. To generate the figure, type the following code:
 
 ```
 python makeplot.py <pdf | png>
@@ -20,7 +20,5 @@ python makeplot.py <pdf | png>
 This should generate the plot:
 
 ![DynamicCompare](DynamicCompare.png)
-
-The numbers in the  file should match that of the numbers in the figure
 
 #### _The exact values in your reproduction may vary slightly (1%) due to differences in random number generation._

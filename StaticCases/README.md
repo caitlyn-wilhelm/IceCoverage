@@ -2,19 +2,19 @@
 
 This directory contains the files to generate the raw data for the Static Cases. The data are labeled by host star spectral type (F, G, K), initial ice state (ColdStart, WarmStart), and eccentricity (ecc). This directory also contains instructions for generating Figures 3-5 in the paper.
 
-Each of the subsubfolders contains the `vspace.in` file that generates the each trial's initial conditions:
+Each of the subsubfolders contains the ``vspace.in`` file that generates the each trial's initial conditions:
 
 ```
 vspace vspace.in
 ```
 
-Now you are ready to run VPLanet! Since there are 10,000 simulations per spectral type per case, it is _recommended_ to use multiplanet, which can be done by typing the following:
+Now you are ready to run ``VPLanet``! Since there are 10,000 simulations per spectral type per case, it is _recommended_ to use multiplanet, which can be done by typing the following:
 
 ```
 multiplanet vspace.in <number of cores>
 ```
 
-After each simulation has completed, type the following to generate a bigplanet archive file, which will be used for plotting purposes:
+After each simulation has completed, type the following to generate a ["big planet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) bigplanet archive file, which will be used for plotting purposes:
 
 ```
 bigplanet bpl.in -a

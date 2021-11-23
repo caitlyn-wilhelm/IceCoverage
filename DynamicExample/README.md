@@ -1,6 +1,6 @@
 # Dynamic Evolution Example
 
-This plot shows a stable Icebelt from the Dynamic Cases, specifically the Case A G Dwarf. 
+This plot shows a stable Icebelt from the Dynamic Cases, specifically the Case A, G Dwarf. 
 
 #### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
@@ -16,12 +16,12 @@ Below is a table of inital values for the case:
 | Eccentricity Amplitude | 0.129         |
 | Eccentricity Period    | 44656         |
 
-The first step is to extract the desired simulation from the _archive file or raw data XXX_ by running bigplanet: 
+The first step is to extract the desired simulation from the _archive file or raw data XXX_ by running ``bigplanet``: 
 ```
 bigplanet bpl.in
 ```
 
-This will generate a bpf file called _DynamicExample.bpf_
+This will generate a ["big planet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_
 
 Now that we have all the data, run the following code in the command line:
 
