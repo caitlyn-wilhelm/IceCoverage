@@ -1,6 +1,6 @@
 # Periodic Example
 
-This plot shows a simulation in which the planet was oorbiting a G dwarf star, but the ice grown was periodic, resulting in seasonal ice growth on the polar caps and ice belts.
+This plot shows a simulation in which a planet orbits a G dwarf star and the rotational oscillation results in ice periodically migrating between the equator and poles.
 
 Below is a table of inital values for the case:
 

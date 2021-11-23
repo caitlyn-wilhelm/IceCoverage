@@ -8,13 +8,13 @@ Each of the subsubfolders contains the ``vspace.in`` file that generates the eac
 vspace vspace.in
 ```
 
-Now you are ready to run ``VPLanet``! Since there are 10,000 simulations per spectral type per case, it is _recommended_ to use multiplanet, which can be done by typing the following:
+To simulate the systems across a certain number of cores, type the following:
 
 ```
 multiplanet vspace.in <number of cores>
 ```
 
-After each simulation has completed, type the following to generate a ["bigplanet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) bigplanet archive file, which will be used for plotting purposes:
+After all simulations have completed, type the following to generate a ["bigplanet archive"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html), which will be used for plotting purposes:
 
 ```
 bigplanet bpl.in -a
