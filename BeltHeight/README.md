@@ -4,13 +4,7 @@ This plot shows the range and average ice heights of ice belts as a function of 
 
 #### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
-This plot uses a bigplanet filtered file. To generate this file, type the following in each of spectral type folders in the _DynamicCases/CaseA/_ folder:
-
-```
-bigplanet bpl.in
-```
-
-That will generate a file called _Test.bpf_. Once that has completed,  generate the plot with the following command in this directory:
+To generate the plot, execute the following command:
 
 ```
 python makeplot.py <pdf | png>
