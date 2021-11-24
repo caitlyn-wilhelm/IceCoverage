@@ -12,4 +12,4 @@ These parameter sweeps were performed with [vspace](https://github.com/VirtualPl
 
 #### _The instructions presented here assume you have installed ``vplanet``, ``vspace``, ``multiplanet``, and ``bigplanet``.
 
-To reproduce the results in Wilhelm et al., first follow the instructions in the [StaticCases](StaticCases) and [DynamicCases](DynamicCases) directories to generate the raw data. You can then reproduce the figures by following the instructions in the other subdirectories.
+To reproduce the results in Wilhelm et al., first follow the instructions in the [StaticCases](StaticCases) and [DynamicCases](DynamicCases) directories to generate the raw data. You can then reproduce the figures by following the instructions in the other subdirectories. Note that Figures 1 and 2 from the paper are presented in the [IceBelts example in theVPLanet repository](https://github.com/VirtualPlanetaryLaboratory/vplanet/tree/main/examples/IceBelts).
