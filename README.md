@@ -1,15 +1,15 @@
-# Plots and Figures for 2021 Wilhelm et. al Publication
+Plots and Figures for 
+# The Ice Coverage of Earth-like Planets Orbiting FGK Stars
 
-Here are the plots and figures used in the 2021 Wilhelm et. al Publication on The Ice Coverage of Earth-like Planets Orbiting FGK Stars. We used [VPLanet](https://github.com/VirtualPlanetaryLaboratory/vplanet) version 2.1 to examine the formation of polar and equitorial ice and constucted contour plots to look at the range in which polar caps and ice belts are present. We looked at three different spectral classes of stars: K, G and F stars.
-It is divided into two different types of simulations:
+This repository contains the scripts to generate the data and figures used in the  "The Ice Coverage of Earth-like Planets Orbiting FGK Stars" by Wilhelm et al. (2021), accepted to the Planetary Science Journal. We used [VPLanet](https://github.com/VirtualPlanetaryLaboratory/vplanet) v2.1 to simulate the formation of polar and equitorial ice of "Earth-like planets" orbiting F, G, and K type stars for a range of orbital and rotational parameters. 
 
-- Static Cases (In these cases obliquity, eccentricity, and percession angles **are static**)
-- Dynamic Cases (The values for eccentricity, oblquity, and their amplitutes and periods **are randomly generated through uniform distribution**)
+We performed two qualitatively different types of simulations:
 
-For the Static Cases there are a folder for each spectral type, and they are divided up by _starting eccentricity value_. So if you wanted to look for _Static K star simulation with eccentricity of 0.2_ that would be **StaticCases/KDwarf/Ecc02**. For the Dynamic Cases, it divided by Case A-E which are shown in the table on the page for Dynamic Cases.
+- [Static Cases](StaticCases) in which the obliquity, eccentricity, and precession angle of the planets are held fixed.
+- [Dynamic Cases](DynamicCases) in which the eccentricity and obliquity vary sinusoidally and the precession angle is calculated self-consistently. The  amplitudes and periods of eccentricity and obliquity are randomly generated with various assumptions.
 
-In each of those folders is the plot generated from the data, a list file with the data, and the [vspace](https://github.com/VirtualPlanetaryLaboratory/vspace) input file if you would like to examine the raw data by running the simulation on your own machine with [multiplanet](https://github.com/VirtualPlanetaryLaboratory/multiplanet).
+These parameter sweeps were performed with [vspace](https://github.com/VirtualPlanetaryLaboratory/vspace) and [multiplanet](https://github.com/VirtualPlanetaryLaboratory/multiplanet), which are Python codes that generate initial conditions for VPLanet simulations and then perform those simulations across multiple cores, respectively. We then used [bigplanet](https://github.com/VirtualPlanetaryLaboratory/bigplanet) to compress and organize the data for analysis and long-term storage.
 
-All of the plots use [bigplanet](https://github.com/VirtualPlanetaryLaboratory/bigplanet), a data analysis suite I developed to aid in the large amount of data generated from the simulations.
+#### _The instructions presented here assume you have installed ``vplanet``, ``vspace``, ``multiplanet``, and ``bigplanet``.
 
-**Note: To generate the raw data and figures you must have VPLanet, vspace, multiplanet, and bigplanet installed on your machine**
+To reproduce the results in Wilhelm et al., first follow the instructions in the [StaticCases](StaticCases) and [DynamicCases](DynamicCases) directories to generate the raw data. You can then reproduce the figures by following the instructions in the other subdirectories. Note that Figures 1 and 2 from the paper are presented in the [IceBelts example in theVPLanet repository](https://github.com/VirtualPlanetaryLaboratory/vplanet/tree/main/examples/IceBelts).

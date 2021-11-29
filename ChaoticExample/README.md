@@ -1,6 +1,8 @@
 # Chaotic Example
 
-This plot shows a simulation in which the planet was orbiting a F dwarf star, but the planet's oblquity and ecentricity cycle causes the planet's climate to evolve chaotically, with epochs of both equitorial and polar ice. _Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock height (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
+This plot shows a simulation in which a planet orbiting an F dwarf star evolves chaotically, with epochs of both equitorial and polar ice. 
+
+#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
 Below is a table of inital values for the case:
 
@@ -14,41 +16,22 @@ Below is a table of inital values for the case:
 | Eccentricity Amplitude | 0.650         |
 | Eccentricity Period    | 65292         |
 
-This figure uses bigplanet's single simulation extraction process. To grab the data from a single simulation, first you must do the following in the _DynamicCases/CaseA/FDwarf/_ Directory.
-
-Run vspace with the command:
-
-```
-vspace vspace.in
-```
-
-Then to offset the Obliquity and Ecc ossilation, run the helper script found in the DynamicCases directory:
-
-```
-python ../../rand_dist.py F_CaseA vspace.in
-```
-
-Now we only need one particular simulation to be ran, so let's _only_ run that particular case:
-
-```
-cd CaseA/FDwarf/F_CaseA/testrand_4407
-vplanet vpl.in
-```
-
-Finally, now we come back to this directory, and run bigplanet to generate a bigplanet filtered file:
+The first step is to extract the desired simulation's data from the _archive file or raw data XXX_ by running ``bigplanet``: 
 
 ```
 bigplanet bpl.in
 ```
 
-This will generate a bpf file called _ChaoticExample.bpf_
-
-Now that we have all the data, run the following code in the command line:
+This command generates a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
 
 ```
 python makeplot.py <pdf | png>
 ```
 
-This should generate the following plot:
+where the two arguments after makeplot.py set the output to either a pdf or png. The resultant plot should should look like this:
 
 ![ChaoticExample](ChaoticExample.png)
+
+_Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock depression (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
+
+#### _Chaotic evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, producing the same random numbers, your result could be very different. Qualitatively similar outcomes should be present in the [DynamicCases](../DynamicCases) data set._
