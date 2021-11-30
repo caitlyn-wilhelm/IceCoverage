@@ -1,6 +1,6 @@
 # Dynamic Evolution Example
 
-This plot shows a stable Icebelt from the Dynamic Cases, specifically the Case A, G Dwarf. 
+This plot shows a stable ice belt from the Dynamic Cases described in the paper, specifically the Case A, G Dwarf. 
 
 #### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
@@ -21,9 +21,7 @@ The first step is to extract the desired simulation from the _archive file or ra
 bigplanet bpl.in
 ```
 
-This will generate a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_
-
-Now that we have all the data, run the following code in the command line:
+This will generate a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_ Next generate the figure with the following command:
 
 ```
 python makeplot.py <pdf | png>
