@@ -1,6 +1,6 @@
 # Cap Height Plot
 
-This figure shows the range and average ice heights of ice caps as a function of latitude for stars orbiting F (top), G (middle) and K (bottom) dwarf stars. Light grey curves show 100 randomly selected individual simulations, while black shows the average of all simulations that concluded with an ice belt. Although the averages are all symmetric about the poles, some individual ice caps are significantly displaced.
+This figure shows the range and average ice heights of ice caps as a function of latitude for stars orbiting K (top), G (middle) and F (bottom) dwarf stars. Light grey curves show 100 randomly selected individual simulations, while black shows the average of all simulations that concluded with ice caps. Although the averages are all symmetric about the poles, some individual ice caps are significantly displaced.
 
 #### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive._
 
