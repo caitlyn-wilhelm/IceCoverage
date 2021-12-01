@@ -1,6 +1,6 @@
 # Chaotic Example
 
-This plot shows a simulation in which a planet orbiting an F dwarf star evolves chaotically, with epochs of both equitorial and polar ice. 
+This plot shows a simulation in which a planet orbiting an F dwarf star evolves chaotically, with epochs of both equitorial and polar ice.
 
 #### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
 
@@ -16,7 +16,7 @@ Below is a table of inital values for the case:
 | Eccentricity Amplitude | 0.650         |
 | Eccentricity Period    | 65292         |
 
-The first step is to extract the desired simulation's data from the _archive file or raw data XXX_ by running ``bigplanet``: 
+The first step is to extract the desired simulation's data from the raw data by running `bigplanet`:
 
 ```
 bigplanet bpl.in

@@ -14,10 +14,6 @@ from bigplanet import bp_extract as bp
 import pathlib
 from itertools import chain
 
-
-#dest = ['/media/caitlyn/Data_Drive8/Projects/IceBelt/K_Cases/K_Monte_Carlo_large/',
-#        '/media/caitlyn/Data_Drive8/Projects/IceBelt/G_Cases/G_Monte_Carlo_Large_2/',
-#        '/media/caitlyn/Data_Drive8/Projects/IceBelt/F_Cases/F_Monte_Carlo_large/']
 dest = ['../DynamicCases/CaseA/KDwarf/','../DynamicCases/CaseA/GDwarf/','../DynamicCases/CaseA/FDwarf/']
 star = ['K Dwarf','G Dwarf','F Dwarf']
 num = 10000
@@ -27,17 +23,12 @@ fig.subplots_adjust(top=0.851,bottom=0.098,left=0.085,right=0.98,hspace=0.839,ws
 
 for x in range(len(dest)):
 
-    #case = [f.path for f in os.scandir(dest[x]) if f.is_dir()][0]
-    #case_name = [f.name for f in os.scandir(dest[x]) if f.is_dir()][0]
-
-    #os.chdir(dest[x])
     num = int(num)
     data = np.zeros(151)
     avg_count = np.zeros(151)
     icecount = 0
     
-    file = bp.BPLFile( dest + "/Test.bpf")
-
+    file = bp.BPLFile( dest +"/" + dest + ".bpa")
 
     icebeltL = bp.ExtractColumn(file,'earth:IceBeltLand:final')
     icebeltS = bp.ExtractColumn(file,'earth:IceBeltSea:final')

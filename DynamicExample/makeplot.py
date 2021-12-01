@@ -64,18 +64,6 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   ice = bp.ExtractColumn(file,'earth:IceHeight:climate')[0]
   insol = bp.ExtractColumn(file,'earth:AnnInsol:climate')[0]
   brock = bp.ExtractColumn(file,'earth:BedrockH:climate')[0]
-  
-  
-  #ecc = list(chain.from_iterable(ecc))
-  #obl = list(chain.from_iterable(obl))
-  #times = list(chain.from_iterable(times))
-  #copp = list(chain.from_iterable(copp))
-  #temp = list(chain.from_iterable(temp))
-  #alb = list(chain.from_iterable(alb))
-  #ice = list(chain.from_iterable(ice))
-  #insol = list(chain.from_iterable(insol))
-  #brock = list(chain.from_iterable(brock))
-
 
   nlats = len(lats)
   ntimes = len(times)
@@ -93,7 +81,6 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   plt.xticks(fontsize = 9)
   if xrange:
     plt.xlim(xrange)
-  #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
   cbar = plt.colorbar(c)
   plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
@@ -111,7 +98,6 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   plt.xticks(fontsize = 9)
   if xrange:
     plt.xlim(xrange)
-  #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
   cbar = plt.colorbar(c)
   plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
@@ -130,17 +116,14 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   plt.xticks(fontsize = 9)
   if xrange:
     plt.xlim(xrange)
-  #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
   cbar = plt.colorbar(c)
   plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
 
   # plot bedrock
-  #brock = np.reshape(brock,(ntimes,nlats))
   brock = bp.CreateMatrix(lats,times,brock)
   brock_T = np.array(brock).T.tolist()
   plt.subplot(4,2,7)
-  #pos = ax4.figbox.get_points()
   c = plt.contourf(times,lats,brock_T,cmap='Reds_r')
   plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
   plt.title('Bedrock height [m]', fontsize = 12)
@@ -150,16 +133,13 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   plt.xticks(fontsize = 9)
   if xrange:
     plt.xlim(xrange)
-  #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
   cbar = plt.colorbar(c)
   plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
   # plot insolation
-  #insol = np.reshape(insol,(ntimes,nlats))
   insol = bp.CreateMatrix(lats,times,insol)
   insol_T = np.array(insol).T.tolist()
   plt.subplot(4,2,2)
-  #pos = ax5.figbox.get_points()
   c = plt.contourf(times,lats,insol_T,cmap='plasma')
   plt.ylabel(r'Latitude [$^\circ$]', fontsize = 10)
   plt.title(r'Annual average instellation [W/m$^2$]', fontsize = 12)
@@ -168,7 +148,6 @@ def clim_evol(plname,dir='.',xrange=False,orbit=False,show=True):
   plt.xticks(fontsize = 9)
   if xrange:
     plt.xlim(xrange)
-  #cbar = plt.colorbar(c,cax=plt.axes([pos[1,0]+0.01,pos[0,1],0.01,pos[1,1]-pos[0,1]]))
   cbar = plt.colorbar(c)
   plt.setp(cbar.ax.yaxis.get_ticklabels(), fontsize = 9)
 
