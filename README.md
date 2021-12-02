@@ -10,6 +10,6 @@ We performed two qualitatively different types of simulations:
 
 These parameter sweeps were performed with [vspace](https://github.com/VirtualPlanetaryLaboratory/vspace) and [multiplanet](https://github.com/VirtualPlanetaryLaboratory/multiplanet), which are Python codes that generate initial conditions for VPLanet simulations and then perform those simulations across multiple cores, respectively. We then used [bigplanet](https://github.com/VirtualPlanetaryLaboratory/bigplanet) to compress and organize the data for analysis and long-term storage.
 
-#### _The instructions presented here assume you have installed ``vplanet``, ``vspace``, ``multiplanet``, and ``bigplanet``.
+#### The instructions presented here assume you have installed ``VPLanet``, ``vspace``, ``multi-planet``, and ``bigplanet``.
 
-To reproduce the results in Wilhelm et al., first follow the instructions in the [StaticCases](StaticCases) and [DynamicCases](DynamicCases) directories to generate the raw data. You can then reproduce the figures by following the instructions in the other subdirectories. Note that Figures 1 and 2 from the paper are presented in the [IceBelts example in theVPLanet repository](https://github.com/VirtualPlanetaryLaboratory/vplanet/tree/main/examples/IceBelts).
+To reproduce the results in Wilhelm et al., first follow the instructions in the [StaticCases](StaticCases) and [DynamicCases](DynamicCases) directories to generate the raw data. You can then reproduce the figures by following the instructions in the other subdirectories. Note that Figures 1 and 2 from the paper are presented in the [IceBelts example in the VPLanet repository](https://github.com/VirtualPlanetaryLaboratory/vplanet/tree/main/examples/IceBelts).

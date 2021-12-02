@@ -22,7 +22,7 @@ The first step is to extract the desired simulation's data from the raw data by 
 bigplanet bpl.in
 ```
 
-This command generates a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command in the command line:
+This command generates a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _ChaoticExample.bpf_ that contains only the data needed for this figure. To create the figure, execute the following command:
 
 ```
 python makeplot.py <pdf | png>
