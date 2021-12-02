@@ -69,8 +69,6 @@ for i in range(len(All)):
     axs[i].set_yscale('log')
     axs[2].set_xlabel("Classification", fontsize = 14)
     axs[i].set_yticks([10**2,10**3,10**4])
-    #ytk = [10**2,10**3,10**4]
-    #axs[i].set_yticklabels(labels = ytk, fontsize = 12)
 
 handles = [mpatches.Patch(color = colors[count], label = value) for count, value in enumerate(legend)]
 
