@@ -20,8 +20,9 @@ After all simulations have completed, type the following to generate a ["bigplan
 bigplanet bpl.in -a
 ```
 
-Once that's done, type the following in the Spectral type folder (GDwarf/ for example) to generate the figure:
+Once that's done, type the following in the spectral type folder (GDwarf, for example) to generate the figure:
 
 ```
 python makeplot.py <pdf | png>
 ```
+where the two arguments after makeplot.py set the output to either a pdf or png.

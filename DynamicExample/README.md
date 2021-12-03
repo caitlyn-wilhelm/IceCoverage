@@ -1,9 +1,9 @@
 # Dynamic Evolution Example
 
 
-This plot shows a stable ice belt from the Dynamic Cases described in the paper, specifically the Case A, G Dwarf. 
+This plot shows a stable, but evolving, ice belt from the Case A, G Dwarf simulations. 
 
-#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the bigplanet archive._
+#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the BigPlanet archive._
 
 Below is a table of inital values for the case:
 
@@ -17,13 +17,13 @@ Below is a table of inital values for the case:
 | Eccentricity Amplitude | 0.129         |
 | Eccentricity Period    | 44656         |
 
-The first step is to extract the desired simulation from the raw data by running `bigplanet`:
+The first step is to extract the desired simulation from the raw data by running `BigPlanet`:
 
 ```
 bigplanet bpl.in
 ```
 
-This will generate a ["bigplanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_ Next generate the figure with the following command:
+This will generate a ["BigPlanet file"](https://virtualplanetarylaboratory.github.io/bigplanet/filetypes.html) called _DynamicExample.bpf_ Next generate the figure with the following command:
 
 ```
 python makeplot.py <pdf | png>
@@ -35,4 +35,4 @@ where the two arguments after makeplot.py set the output to either a pdf or png.
 
 _Top left:_ Surface temperature. _Top middle left:_ Top of atmosphere albedo. _Bottom middle left:_ Ice sheet height. _Bottom left:_ Bedrock height (note the negative scale). _Top right:_ Annual average instellation. _Top middle right:_ Obliquity. _Bottom middle right:_ Eccentricity. _Bottom right:_ Climate obliquity precession parameter (COPP).
 
-#### _Climate evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, producing the same random numbers, your result could be quantitatively different._
+#### _Climate evolution depends sensitively on initial conditions, so unless you use the same hardware and software as the author, producing the same random numbers, your result could be qualitatively different._

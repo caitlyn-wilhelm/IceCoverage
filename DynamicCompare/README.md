@@ -1,8 +1,8 @@
 # Dynamic Case Comparison
 
-This plot shows the outcomes of our 5 [Dynamic Cases](../DynamicCases), grouped by host star spectral type. See the paper for more information on the differencs between these cases. Despite wide ranges of assumptions, the outcomes are relatively constant, suggesting that variations in albedo, rotational cycle, or orbital cycle do not strongly influence the climate states.
+This plot shows the outcomes of our 5 [Dynamic Cases](../DynamicCases), grouped by host star spectral type. See the paper for more information on the differences between these cases. Despite wide ranges of assumptions, the outcomes are relatively constant, suggesting that variations in albedo, rotational cycle, or orbital cycle do not strongly influence the climate states.
 
-#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have build the bigplanet archive._
+#### _These instructions assume you have completed the [Dynamic Cases](../DynamicCases) and have built the BigPlanet archive._
 
 To categorize the planets, type the following:
 
@@ -17,7 +17,7 @@ which generates a file called _climateType.log_ that tabulates the different cat
 python makeplot.py <pdf | png>
 ```
 
-This should generate the plot:
+to generate this plot:
 
 ![DynamicCompare](DynamicCompare.png)
 
