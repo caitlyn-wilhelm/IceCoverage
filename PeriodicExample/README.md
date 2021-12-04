@@ -1,6 +1,6 @@
 # Periodic Example
 
-This plot shows a simulation in which a planet orbits a G dwarf star and the rotational oscillation results in ice periodically migrating between the equator and poles.
+This plot shows a planet orbiting a G dwarf star with an obliquity cycle that results in ice periodically migrating between the equator and poles.
 
 Below is a table of inital values for the case:
 
