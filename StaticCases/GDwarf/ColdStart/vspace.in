@@ -1,5 +1,5 @@
 srcfolder .
-destfolder G_ColdStart
+destfolder GDwarf_ColdStart
 trialname  test
 
 file   sun.in

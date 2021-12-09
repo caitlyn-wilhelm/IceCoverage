@@ -1,5 +1,5 @@
 srcfolder  .
-destfolder F_exp10000
+destfolder FDwarf_ColdStart
 trialname  semi_obl
 
 file   sun.in

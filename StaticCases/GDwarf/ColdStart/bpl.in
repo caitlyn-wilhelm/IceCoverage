@@ -1,5 +1,5 @@
-sDestFolder GDwarf_WarmStart
-sBigplanetFile GDwarf_WarmStart.bpa
+sDestFolder GDwarf_ColdStart
+sBigplanetFile GDwarf_ColdStart.bpa
 sOutputFile Test.bpf
 
 

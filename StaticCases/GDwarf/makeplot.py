@@ -24,7 +24,12 @@ wspace=0.2)
 
 for x,dest in enumerate(case_list):
     
-    HDF5_File = h5py.File('Test.bpf', 'r')
+    if dest == "WarmStart/":
+        filename = "GDwarf_WarmStart.bpa"
+    else:
+         filename = "GDwarf_ColdStart.bpa"
+         
+    HDF5_File = h5py.File(filename, 'r')
 
     earth_icebelt_L = ExtractColumn(HDF5_File,'earth:IceBeltLand:final')
     earth_icebelt_S = ExtractColumn(HDF5_File,'earth:IceBeltSea:final')

@@ -1,0 +1,18 @@
+srcfolder  .
+destfolder KDwarf_ColdStart
+trialname  semi_obl
+
+file   sun.in
+dLuminosity 1.30764e+26
+dMass 0.82
+
+file   earth.in
+dObliquity [0, 90, n100] obl
+dSemi [0.4876, 0.575, n100] a
+dIceAlbedo 0.55
+
+dInitIceHeight 6.68459e-12
+dTGlobalInit -40
+dInitIceLat 0
+
+file   vpl.in
